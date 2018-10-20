@@ -25,10 +25,12 @@
         const mark = 'mark';
         const greeting = 'greeting';
         const uncheck = 'uncheck';
+        const remindUnchecked = 'remind_unchecked';
         const errMsg = 'Error, I think developers screwed a bit. ha ha.';
         const notClearMsg = 'I do not understand you. Repeat again please.';
 
         // TODO: remove this mock ***************************************************
+        //************************************************************************************
         let checklist = [
           {
             "title": "Wildfires",
@@ -81,7 +83,7 @@
 
         function generateSpeech(text) {
           responsiveVoice.speak(text);
-        };
+        }
 
         function getCheckLists() {
           let list = JSON.parse(localStorage.getItem('checklists'));
@@ -98,6 +100,29 @@
           }
 
           return 'you do not have checklists';
+        }
+
+        function unCheckItems(utterance) {
+          let takenItems = JSON.parse(localStorage.getItem('taken_items'));
+          let msg = '';
+
+          if (!takenItems) {
+            takenItems = [];
+          }
+
+          // add items to taken list
+          takenItems.forEach((item, idx) => {
+            item = item.toLowerCase();
+            if (utterance.includes(item)) {
+              takenItems.slice(idx, 1);
+              msg += `${item}, `;
+            }
+          });
+
+          console.log(takenItems);
+          localStorage.setItem(`taken_items`, JSON.stringify(takenItems));
+
+          return msg += `. Unchecked. Don't forget to stay calm my friend`;
         }
 
         function markItem(utterance) {
@@ -118,13 +143,6 @@
             return item.toLowerCase();
           });
 
-          console.log('taken');
-          console.log(takenItems);
-          console.log('items');
-          console.log(active.items);
-          console.log('utterance');
-          console.log(utterance);
-
           // add items to taken list
           items.forEach((item) => {
             item = item.toLowerCase();
@@ -136,21 +154,76 @@
             }
           });
 
-          console.log('taken to storage');
-          console.log(takenItems);
           localStorage.setItem(`taken_items`, JSON.stringify(takenItems));
 
-          return msg += `. Added. Don't forget to stay calm my friend`;
+          return msg += `. Marked my friend`;
+        }
+
+        function remindUncheckedItems() {
+          let active = JSON.parse(localStorage.getItem('active'));
+          let takenItems = JSON.parse(localStorage.getItem('taken_items'));
+          let items = [];
+          let msg = '';
+
+          if (active) {
+            items = active.items;
+          }
+
+          if (!takenItems) {
+            takenItems = [];
+          }
+
+          takenItems.map((item) => {
+            return item.toLowerCase();
+          });
+
+          // add items to taken list
+          items.forEach((item) => {
+            item = item.toLowerCase();
+            if (takenItems.indexOf(item) < 0) {
+              msg += `${item}, `;
+            }
+          });
+
+          return `${msg} are not taken! Don't forget about it.`;
+        }
+
+
+        function processIntent(data){
+          let msg = '';
+          let intent = data.topScoringIntent.intent;
+
+          switch (intent) {
+            case greeting:
+              msg = 'Hello how can I help you?';
+              break;
+            case mark:
+              msg = markItem(finalTranscript);
+              break;
+            case show:
+              msg = getCheckLists();
+              break;
+            case uncheck:
+              msg = unCheckItems(finalTranscript);
+              break;
+            case remindUnchecked:
+              msg = remindUncheckedItems();
+              break;
+
+            default:
+              generateSpeech(notClearMsg);
+          }
+
+          generateSpeech(msg);
         }
 
         recognition.onstart = function () {
           console.log('start');
         };
-        recognition.onresult = function (event) {
 
-          console.log('result', event)
-          var interim_transcript = '';
-          let msg = '';
+        // process speech to text
+        recognition.onresult = function (event) {
+          let interim_transcript = '';
 
           for (var i = event.resultIndex; i < event.results.length; ++i) {
             if (event.results[i].isFinal) {
@@ -163,28 +236,11 @@
           finalTranscript = finalTranscript.toLowerCase();
           console.log('recognized: ', finalTranscript);
 
-
           // get intent from LUIS
           axios.get(`${luisUrl}${finalTranscript}`)
             .then(response => {
               console.log(response.data);
-
-              let intent = response.data.topScoringIntent.intent;
-
-              switch (intent) {
-                case greeting:
-                  msg = 'Hello how can I help you?';
-                  break;
-                case mark:
-                  msg = markItem(finalTranscript);
-                  break;
-                case show:
-                  msg = getCheckLists();
-                  break;
-                default:
-                  generateSpeech(notClearMsg);
-              }
-              generateSpeech(msg);
+              processIntent(response.data);
             })
             .catch(e => {
               console.error(e);
