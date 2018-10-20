@@ -18,11 +18,12 @@
         let finalTranscript = '';
         let recognition = new webkitSpeechRecognition();
         const show = 'show';
-        const give = 'give';
+        const resetList = 'reset_list';
         const mark = 'mark';
         const help = 'help';
         const greeting = 'greeting';
         const uncheck = 'uncheck';
+        const notify = 'notify';
         const remindUnchecked = 'remind_unchecked';
         const errMsg = 'Error, I think developers screwed a bit. ha ha.';
         const notClearMsg = 'I do not understand you. Repeat again please.';
@@ -197,8 +198,32 @@
           return msg;
         }
 
+        function getResetList() {
+          let msg = 'Done! All taken list is empty now.';
 
-        function processIntent(data){
+          localStorage.setItem(`taken_items`, JSON.stringify([]));
+
+          return msg;
+        }
+
+        function notifyAll() {
+          let msg = 'Notification has been sent';
+
+          axios({
+            method: 'post',
+            url: '/user/12345',
+            data: {
+              firstName: 'Fred',
+              lastName: 'Flintstone'
+            }
+          }).then((res)=>{
+            return msg;
+          }).catch(err=>{
+            return 'Something went wrong with notifications'
+          })
+        }
+
+        async function processIntent(data){
           let msg = '';
           let intent = data.topScoringIntent.intent;
 
@@ -221,7 +246,12 @@
             case help:
               msg = getHelpMessage();
               break;
-
+            case resetList:
+              msg = getResetList();
+              break;
+            case notify:
+              msg = await notifyAll();
+              break;
             default:
               generateSpeech(notClearMsg);
           }
