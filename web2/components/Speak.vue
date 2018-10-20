@@ -1,13 +1,10 @@
 <template>
-
-  <v-layout column justify-center align-center>
-    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
-    <v-flex xs12 sm8 md6>
-      <div>
-        <v-btn color="white" large block @click="startButton()">Talk</v-btn>
-      </div>
-    </v-flex>
-  </v-layout>
+    <div id="speak">
+      <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+      <v-btn color="info" fab large dark @click="startButton()">
+        <v-icon>mic</v-icon>
+      </v-btn>
+    </div>
 </template>
 
 <script>
@@ -263,5 +260,11 @@
 </script>
 
 <style scoped>
-
+  #speak {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+  }
 </style>

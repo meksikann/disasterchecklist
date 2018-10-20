@@ -37,13 +37,7 @@
         <v-slide-y-transition mode="out-in">
           <router-view></router-view>
         </v-slide-y-transition>
-        <v-slide-x-transition mode="out-in">
-          <div id="speak">
-            <v-btn color="info" fab large dark>
-              <v-icon>mic</v-icon>
-            </v-btn>
-          </div>
-        </v-slide-x-transition>
+        <speak></speak>
       </v-container>
     </v-content>
   </v-app>
@@ -51,10 +45,10 @@
 
 <script>
   import Meta from 'mixins/meta'
-
+  import Speak from "../components/Speak";
   export default {
     mixins: [Meta],
-
+    components: {Speak},
     data () {
       return {
         clipped: true,
@@ -75,13 +69,6 @@
 </script>
 
 <style scoped>
-  #speak {
-    position: fixed;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-  }
   .disasters {
     background: #78868D;
     background-size: cover;
