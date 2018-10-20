@@ -8,7 +8,7 @@
         <v-layout row wrap justify-space-between class="buttons">
           <v-flex xs6 sm6 md6>
             <div class="content create">
-              <v-btn color="rgba(98, 61, 189, .7)" large block router to="/disasters">
+              <v-btn color="rgba(98, 61, 189, .7)" large block router to="/checklist">
                 <div>
                   <v-icon large>add_circle</v-icon>
                   create checklist

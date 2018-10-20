@@ -56,7 +56,7 @@
         fixed: false,
         items: [
           { icon: 'home', title: 'Welcome', to: '/' },
-          { icon: 'list', title: 'Create a checklist', to: '/disasters' },
+          { icon: 'add_circle', title: 'Create a checklist', to: '/checklist' },
           { icon: 'search', title: 'View map', to: '/map' }
         ],
         miniVariant: false,

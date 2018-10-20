@@ -1,6 +1,6 @@
 <template>
     <div class="checklist-item" :class="{ 'success': taken }" @click="toggleTaken">
-        <div class="title">{{ title }}</div>
+        <div class="item-title">{{ title }}</div>
     </div>
 </template>
 
@@ -52,8 +52,11 @@
         background-color: lightgreen;
         color: green;
     }
-    .title {
+    .item-title {
         flex-grow: 1;
+        font-size: 2rem;
+        height: 4rem;
+        line-height: 4rem;
         text-align: center;
     }
 </style>
