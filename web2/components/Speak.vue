@@ -12,12 +12,33 @@
 </template>
 
 <script>
+  import  test from ''
   export default {
     name: "Speak",
     methods: {
       startButton(event) {
         let finalTranscript = '';
         let recognition = new webkitSpeechRecognition();
+
+        // TODO: REmove **************************************
+        let checklist = ['medicine','water','passport','money'];
+         localStorage.setItem(`checklist`, JSON.stringify(checklist));
+
+        function  generateSpeech(text) {
+          responsiveVoice.speak(text);
+        };
+
+        function getCheckList() {
+          let list = JSON.parse(localStorage.getItem('checklist'));
+
+          // TODO: should return array as ['medicine','water','passport','money']
+          return list;
+        }
+
+        function getAllList() {
+
+        }
+
         recognition.onstart = function () {
           console.log('start');
         };
@@ -34,8 +55,27 @@
           }
           console.log(finalTranscript);
 
-          // TODO: do some actions with it
+          // reconize intent ==================>>>>>
+          switch (finalTranscript.toLocaleLowerCase()) {
+            case finalTranscript.includes('show'):
+              let msg = '';
+              let list = getCheckList();
 
+              console.log(list);
+
+              if(list && list.length) {
+                msg = list.join(',');
+              } else {
+                msg = 'There are no items in list';
+              }
+              generateSpeech(msg);
+
+              break;
+            default:
+              generateSpeech('I do not understand you. Repeat again please.');
+          }
+
+          // generateSpeech(finalTranscript);
         };
         recognition.onerror = function (event) {
           console.log('error')
@@ -45,9 +85,6 @@
         };
 
         recognition.start();
-      },
-      generateSpeech(text) {
-        responsiveVoice.speak(text);
       }
     }
   }
