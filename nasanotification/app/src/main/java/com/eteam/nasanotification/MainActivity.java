@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        String url = "https://ordinary-snail-84.localtunnel.me";
+        String url = "zzz";
         Bundle extras = getIntent().getExtras();
         if ((extras != null) && (extras.containsKey("link"))){
             url = getIntent().getExtras().getString("link");
