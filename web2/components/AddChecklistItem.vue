@@ -1,7 +1,7 @@
 <template>
     <div class="checklist-item">
         <input class="item-title" type="text" v-model="title" @keypress.enter="save" />
-        <v-btn class="btn" @click.stop.prevent="save">Add</v-btn>
+        <v-btn class="btn" @click.stop.prevent="save" :disabled="isTitleDuplicate">Add</v-btn>
     </div>
 </template>
 
@@ -10,6 +10,11 @@
         addChecklistItem
     } from '../localStorage/localStorage';
     export default {
+        computed: {
+            isTitleDuplicate() {
+                return this.items.includes(this.title);
+            },
+        },
         data: function() {
             return {
                 title: 'New item',
@@ -17,6 +22,9 @@
         },
         methods: {
             save: function() {
+                if(this.isTitleDuplicate) {
+                    return;
+                }
                 addChecklistItem(this.checklistId,
                     this.title);
                 this.$emit('save', this.title)
@@ -25,6 +33,7 @@
         },
         props: {
             checklistId: Number,
+            items: Array,
         }
     }
 </script>

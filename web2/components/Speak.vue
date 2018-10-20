@@ -58,10 +58,10 @@
           ]
         };
 
-        let takenItemsDump = ['Food'];
-        localStorage.setItem(`checklists`, JSON.stringify(checklist));
-        localStorage.setItem(`active`, JSON.stringify(activeDump));
-        localStorage.setItem(`taken_items`, JSON.stringify(takenItemsDump));
+        let takenItemsDump = ['Food'];;
+        // localStorage.setItem(`checklists`, JSON.stringify(checklist));
+        // localStorage.setItem(`active`, JSON.stringify(activeDump));
+        // localStorage.setItem(`taken_items`, JSON.stringify(takenItemsDump))
         //*************************************************************************
         //*********************************************************************
 
@@ -172,6 +172,10 @@
             }
           });
 
+          if(msg == ''){
+            return `Everything in you need - is in you'r bag`;
+          }
+
           return `${msg} are not taken! Don't forget about it.`;
         }
 
@@ -233,6 +237,7 @@
             msg += ` ${ent.entity},`;
           });
           msg += ' added to list';
+          localStorage.setItem(`taken_items`, JSON.stringify(takenItems))
 
           return msg;
         }

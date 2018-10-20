@@ -9,6 +9,13 @@ try {
 } catch (err) {
   console.error(err);
 }
+try {
+  let data = JSON.parse(localStorage.getItem(TAKEN_ITEMS_STORAGE_KEY));
+  data = data.filter(takenItem => typeof takenItem === 'string');
+  localStorage.setItem(TAKEN_ITEMS_STORAGE_KEY, JSON.stringify(data));
+} catch (err) {
+  console.error(err);
+}
 
 export function addChecklist(checklist) {
   let data;
@@ -35,7 +42,7 @@ export function addChecklist(checklist) {
 export function addChecklistItem(checklistId, checklistItem) {
   let data;
   try {
-    data = JSON.parse(localStorage.getItem(TAKEN_ITEMS_STORAGE_KEY))
+    data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY))
   } catch (err) {
     data = []
   }
@@ -47,7 +54,7 @@ export function addChecklistItem(checklistId, checklistItem) {
   checklist.items.push(checklistItem);
   data = data.filter(checklist => checklist.id !== checklistId);
   data.push(checklist);
-  localStorage.setItem(TAKEN_ITEMS_STORAGE_KEY, JSON.stringify(data));
+  localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
 }
 
 export function addTakenItem(takenItem) {
@@ -113,12 +120,17 @@ export function modifyChecklist(checklist) {
   const data = getChecklists();
   Object.assign(data.find(checklistItem => checklistItem.id === checklist.id), checklist);
   localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
+  const active = JSON.parse(localStorage.getItem(ACTIVE_STORAGE_KEY));
+  if(active.id === checklist.id) {
+    localStorage.setItem(ACTIVE_STORAGE_KEY, JSON.stringify(checklist));
+  }
+
 }
 
 export function removeTakenItem(notTakenItem) {
   let takenItems = getTakenItems();
   takenItems = takenItems.filter(takenItem => takenItem !== notTakenItem);
-  localStorage.setItem(TAKEN_ITEMS_STORAGE_KEY, takenItems);
+  localStorage.setItem(TAKEN_ITEMS_STORAGE_KEY, JSON.stringify(takenItems));
 }
 
 export function setActiveChecklist(checklistId) {
