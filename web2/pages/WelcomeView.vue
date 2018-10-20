@@ -11,11 +11,28 @@
         <v-card-text>
           <p>Welcome to the Disaster Checklist</p>
         </v-card-text>
-        <div class="buttons">
-          <v-btn color="white" block router to="/create">Create a checklist</v-btn>
-          <v-btn color="white" block router to="/view">View checklists</v-btn>
-          <v-btn color="white" block router to="/use">Use</v-btn>
-        </div>
+        <v-layout row wrap class="buttons">
+          <v-flex xs6 sm6 md6>
+            <div class="content create">
+              <v-btn color="white"  router to="/create">Create</v-btn>
+            </div>
+          </v-flex>
+          <v-flex xs6 sm6 md6>
+            <div class="content">
+              <v-btn color="white" router to="/view">View</v-btn>
+            </div>
+          </v-flex>
+          <v-flex xs6 sm6 md6>
+            <div class="content">
+              <v-btn color="white" router to="/use">Use</v-btn>
+            </div>
+          </v-flex>
+          <v-flex xs6 sm6 md6>
+            <div class="content">
+              <v-btn color="white" @click="startButton()">Talk</v-btn>
+            </div>
+          </v-flex>
+        </v-layout>
       </v-card>
     </v-flex>
   </v-layout>
@@ -23,6 +40,13 @@
 <style scoped>
   .buttons {
     text-align: center;
+  }
+
+  .buttons .content {
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .background-map {
@@ -54,3 +78,42 @@
     background: rgba(0, 0, 0, .3);
   }
 </style>
+
+<script>
+
+  export default{
+    data(){
+      return {
+
+      }
+    },
+    methods: {
+      startButton(event) {
+        let finalTranscript = '';
+       let recognition = new webkitSpeechRecognition();
+        recognition.onstart = function() {
+          console.log('start')
+        };
+        recognition.onresult = function(event) {
+          console.log('result', event)
+          var interim_transcript = '';
+
+          for (var i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              finalTranscript += event.results[i][0].transcript;
+            } else {
+              interim_transcript += event.results[i][0].transcript;
+            }
+          }
+         console.log(finalTranscript);
+
+        };
+        recognition.onerror = function(event) { console.log('error') };
+        recognition.onend = function() { console.log('end')};
+        console.log('test')
+
+        recognition.start();
+      }
+    }
+  }
+</script>
