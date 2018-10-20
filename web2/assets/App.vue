@@ -1,5 +1,5 @@
 <template>
-  <v-app light>
+  <v-app dark>
     <v-navigation-drawer
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -24,10 +24,10 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+    <v-toolbar fixed class="main">
+      <v-toolbar-side-icon dark @click.stop="drawer = !drawer"></v-toolbar-side-icon>
     </v-toolbar>
-    <v-toolbar fixed app :clipped-left="clipped">
+    <v-toolbar dark fixed app :clipped-left="clipped" class="main">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
@@ -75,8 +75,8 @@
 </script>
 
 <style scoped>
-  .disasters {
-    background: #78868D;
-    background-size: cover;
+  .main {
+    background: #424242;
+    color: #fff;
   }
 </style>
