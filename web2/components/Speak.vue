@@ -211,20 +211,33 @@
         }
 
         function notifyAll() {
-          // let msg = 'Notification has been sent';
-          //
-          // axios({
-          //   method: 'post',
-          //   url: '/user/12345',
-          //   data: {
-          //     firstName: 'Fred',
-          //     lastName: 'Flintstone'
-          //   }
-          // }).then((res)=>{
-          //   return msg;
-          // }).catch(err=>{
-          //   return 'Something went wrong with notifications'
-          // })
+          let msg = 'Notification has been sent';
+
+          console.log('notification-------------------->');
+
+          axios({
+            method: 'post',
+            url: 'https://fcm.googleapis.com/fcm/send',
+            headers:{
+              'Content-Type': 'application/json',
+              'Authorization': 'key=AAAAkoF9zZo:APA91bFmkKymStheENpbGXD5qkitpd6XKkPcFdjqp1D8DIKjxKJY9QE0E_dGFsceb_Euj37BUi1tRILZkImea5MBONurvChtUYD4pCog7MnQR5aV2Iv1SoJZXIcM22qWL1-8TrGi08Ci'
+            },
+            data: {
+              "notification": {
+                "title": "Wow, disaster alert!",
+                "body": "Wildfires is reported in your area"
+              },
+              "data": {
+                "link": "https://habr.com/post/427109/"
+              },
+              "to": "/topics/disasters"
+            }
+          }).then((res)=>{
+            return msg;
+          }).catch(err=>{
+            return 'Something went wrong with notifications'
+          })
+          return msg;
         }
 
         function addItemToList(data) {
