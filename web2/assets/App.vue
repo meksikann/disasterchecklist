@@ -74,7 +74,7 @@
 
 <style scoped>
   .disasters {
-    background: url("/static/checklist.jpg") no-repeat;
+    background: #78868D;
     background-size: cover;
   }
 </style>
