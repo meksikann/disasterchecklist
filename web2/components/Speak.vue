@@ -58,10 +58,10 @@
           ]
         };
 
-        let takenItemsDump = ['Food'];
-        localStorage.setItem(`checklists`, JSON.stringify(checklist));
-        localStorage.setItem(`active`, JSON.stringify(activeDump));
-        localStorage.setItem(`taken_items`, JSON.stringify(takenItemsDump));
+        let takenItemsDump = ['Food'];;
+        // localStorage.setItem(`checklists`, JSON.stringify(checklist));
+        // localStorage.setItem(`active`, JSON.stringify(activeDump));
+        // localStorage.setItem(`taken_items`, JSON.stringify(takenItemsDump))
         //*************************************************************************
         //*********************************************************************
 
