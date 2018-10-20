@@ -26,6 +26,7 @@ export function addChecklistItem(checklistId, checklistItem) {
     title: 'Empty',
     items: []
   };
+  checklist.items.push(checklistItem);
   data = data.filter(checklist => checklist.id !== checklistId);
   data.push(checklist);
   localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
