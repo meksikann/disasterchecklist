@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="32c867ab-db52-48d4-a437-4172b3b0ef54" name="Default Changelist" comment="">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/web2/pages/FiresView.vue" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/web2/pages/InfoView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -15,6 +16,9 @@
       <change beforePath="$PROJECT_DIR$/web2/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web2/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web2/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web2/store/index.js" afterDir="false" />
 =======
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+>>>>>>> 67e12d4caa50b80c81f895f72f0e95287eca4eef
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web2/assets/App.vue" afterPath="$PROJECT_DIR$/web2/assets/App.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web2/package-lock.json" afterPath="$PROJECT_DIR$/web2/package-lock.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web2/package.json" afterPath="$PROJECT_DIR$/web2/package.json" />
@@ -92,9 +96,11 @@
       <file leaf-file-name="WelcomeView.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web2/pages/WelcomeView.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="40" column="49" lean-forward="false" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
-              <folding />
+            <state relative-caret-position="119">
+              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+              <folding>
+                <element signature="n#v-card#0;n#v-flex#0;n#v-layout#0;n#template#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,8 +145,8 @@
       <file leaf-file-name="App.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web2/assets/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="43" column="75" lean-forward="false" selection-start-line="43" selection-start-column="75" selection-end-line="43" selection-end-column="75" />
+            <state relative-caret-position="240">
+              <caret line="58" column="56" lean-forward="false" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
               <folding />
 >>>>>>> f2b1336baef42c9116ee7317718512b443fb3fd4
             </state>
@@ -375,6 +381,7 @@
       <updated>1540029346505</updated>
       <workItem from="1540029347732" duration="3033000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1540033989809" duration="1548000" />
       <workItem from="1540038655303" duration="6624000" />
       <workItem from="1540045337679" duration="2714000" />
@@ -383,10 +390,14 @@
 =======
       <workItem from="1540033989809" duration="18353000" />
 >>>>>>> f2b1336baef42c9116ee7317718512b443fb3fd4
+=======
+      <workItem from="1540033989809" duration="19361000" />
+>>>>>>> 67e12d4caa50b80c81f895f72f0e95287eca4eef
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="11296000" />
   </component>
@@ -407,6 +418,9 @@
       <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
 =======
     <option name="totallyTimeSpent" value="21386000" />
+=======
+    <option name="totallyTimeSpent" value="22394000" />
+>>>>>>> 67e12d4caa50b80c81f895f72f0e95287eca4eef
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -647,16 +661,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web2/pages/WelcomeView.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="40" column="49" lean-forward="false" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
-          <folding />
+        <state relative-caret-position="119">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="n#v-card#0;n#v-flex#0;n#v-layout#0;n#template#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web2/assets/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="43" column="75" lean-forward="false" selection-start-line="43" selection-start-column="75" selection-end-line="43" selection-end-column="75" />
+        <state relative-caret-position="240">
+          <caret line="58" column="56" lean-forward="false" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
           <folding />
 >>>>>>> f2b1336baef42c9116ee7317718512b443fb3fd4
         </state>

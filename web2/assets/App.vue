@@ -37,13 +37,15 @@
         <v-slide-y-transition mode="out-in">
           <router-view></router-view>
         </v-slide-y-transition>
+        <v-slide-x-transition mode="out-in">
+          <div id="speak">
+            <v-btn color="info" fab large dark>
+              <v-icon>mic</v-icon>
+            </v-btn>
+          </div>
+        </v-slide-x-transition>
       </v-container>
     </v-content>
-    <v-footer :fixed="fixed" app>
-      <v-card-actions>
-        <v-btn color="primary" small flat router to="/map">View map</v-btn>
-      </v-card-actions>
-    </v-footer>
   </v-app>
 </template>
 
@@ -60,7 +62,8 @@
         fixed: false,
         items: [
           { icon: 'home', title: 'Welcome', to: '/' },
-          { icon: 'fire', title: 'Create a checklist', to: '/disasters' }
+          { icon: 'fire', title: 'Create a checklist', to: '/disasters' },
+          { icon: 'search', title: 'View map', to: '/map' }
         ],
         miniVariant: false,
         right: false,
@@ -72,6 +75,13 @@
 </script>
 
 <style scoped>
+  #speak {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+  }
   .disasters {
     background: #78868D;
     background-size: cover;

@@ -1,11 +1,9 @@
 // Hard-coded, replace with your public key
 const publicVapidKey = 'BEg8fDDy7YAz3PQoDCgQ84BAVNZl7AIPFwRCHaTGaOleKWA36WHpOkCiuRtU9tBePLwGIhj13jJEFpQLWIpltD8';
 
-console.log('first alert');
 
 if ('serviceWorker' in navigator) {
   console.log('Registering service worker');
-  // alert('SW exist');
   run().catch(error => console.log(error));
 }
 
@@ -32,7 +30,7 @@ async function run() {
   });
   console.log('Sent push');
   } catch (e) {
-    alert(e);
+    console.log(e);
   }
 }
 
