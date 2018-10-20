@@ -20,11 +20,14 @@
         const show = 'show';
         const give = 'give';
         const mark = 'mark';
+        const help = 'help';
         const greeting = 'greeting';
         const uncheck = 'uncheck';
         const remindUnchecked = 'remind_unchecked';
         const errMsg = 'Error, I think developers screwed a bit. ha ha.';
         const notClearMsg = 'I do not understand you. Repeat again please.';
+        const helpMsg = 'Ok. First of all - calm down. Go and choose checklist to take necessary stuff with you.' +
+          'And in case of urgent emergency please call nine one one'
 
         // TODO: remove this mock ***************************************************
         //************************************************************************************
@@ -136,7 +139,7 @@
             takenItems = [];
           }
 
-          takenItems.map((item) => {
+          takenItems = takenItems.map((item) => {
             return item.toLowerCase();
           });
 
@@ -159,6 +162,7 @@
         function remindUncheckedItems() {
           let active = JSON.parse(localStorage.getItem('active'));
           let takenItems = JSON.parse(localStorage.getItem('taken_items'));
+          console.log(takenItems);
           let items = [];
           let msg = '';
 
@@ -170,9 +174,11 @@
             takenItems = [];
           }
 
-          takenItems.map((item) => {
+          takenItems = takenItems.map((item) => {
             return item.toLowerCase();
           });
+
+          console.log(takenItems);
 
           // add items to taken list
           items.forEach((item) => {
@@ -183,6 +189,12 @@
           });
 
           return `${msg} are not taken! Don't forget about it.`;
+        }
+
+        function getHelpMessage() {
+          let msg = helpMsg;
+
+          return msg;
         }
 
 
@@ -205,6 +217,9 @@
               break;
             case remindUnchecked:
               msg = remindUncheckedItems();
+              break;
+            case help:
+              msg = getHelpMessage();
               break;
 
             default:
