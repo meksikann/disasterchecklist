@@ -14,6 +14,9 @@
     name: "Speak",
     methods: {
       startButton(event) {
+        var voicelist = responsiveVoice.getVoices();
+        responsiveVoice.setDefaultVoice("US English Female");
+        console.log(voicelist);
         const luisUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/180cb4ca-9c66-42d9-b922-cec6b59a1934?subscription-key=029d627f757d4d8494495c92dc3c5742&timezoneOffset=-360&q=';
         let finalTranscript = '';
         let recognition = new webkitSpeechRecognition();
