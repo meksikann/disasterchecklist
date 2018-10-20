@@ -6,7 +6,7 @@
         <div class="background">
           <img src="/static/fires_1.jpg" alt="">
         </div>
-        <v-btn flat large color="white" router to="/disaster-fire">Fire</v-btn>
+        <v-btn flat large color="white" router to="/disaster-fire">Fires</v-btn>
       </div>
     </v-flex>
     <v-flex xs12>

@@ -26,7 +26,7 @@ export function createRouter () {
         route('/', 'Welcome', 'Disaster guide'),
         route('/disasters', 'Create', 'Disasters'),
         route('/disaster-fire', 'Fires'),
-        route('/disaster-flood', 'Floods'),
+        route('/disaster-flood', 'Flood'),
         route('/map', 'Map'),
         route('/checklist', 'Checklist'),
         route('/view', 'Info'),
