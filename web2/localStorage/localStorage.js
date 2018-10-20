@@ -77,14 +77,12 @@ export function getChecklist(checklistId) {
   return data.find(checklist => checklist.id === checklistId);
 }
 
-export function getAllChecklist(){
-  let data;
+export function getChecklists(){
   try {
-    data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY))
+    return JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY));
   } catch (err) {
-    data = []
+    return [];
   }
-  return data;
 }
 
 export function getNextId() {
@@ -109,6 +107,12 @@ export function getTakenItems() {
 
 export function isItemTaken(item) {
   return getTakenItems().includes(item);
+}
+
+export function modifyChecklist(checklist) {
+  const data = getChecklists();
+  Object.assign(data.find(checklistItem => checklistItem.id === checklist.id), checklist);
+  localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
 }
 
 export function removeTakenItem(notTakenItem) {
