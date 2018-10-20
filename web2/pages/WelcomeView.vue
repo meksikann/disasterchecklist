@@ -6,25 +6,25 @@
         <img src="/static/map.jpg" alt="Map" class="mb-5"/>
       </div>
       <v-card flat color="transparent">
-        <v-layout row wrap class="buttons">
+        <v-layout row wrap justify-space-between class="buttons">
           <v-flex xs6 sm6 md6>
             <div class="content create">
-              <v-btn color="white"  router to="/create">Create</v-btn>
+              <v-btn color="white" large block router to="/create">Create a checklist</v-btn>
             </div>
           </v-flex>
           <v-flex xs6 sm6 md6>
             <div class="content">
-              <v-btn color="white" router to="/view">View</v-btn>
+              <v-btn color="white" large block router to="/view">View</v-btn>
             </div>
           </v-flex>
           <v-flex xs6 sm6 md6>
             <div class="content">
-              <v-btn color="white" router to="/use">Use</v-btn>
+              <v-btn color="white" large block router to="/use">Use</v-btn>
             </div>
           </v-flex>
           <v-flex xs6 sm6 md6>
             <div class="content">
-              <v-btn color="white" @click="startButton()">Talk</v-btn>
+              <v-btn color="white" large block @click="startButton()">Talk</v-btn>
             </div>
           </v-flex>
         </v-layout>
@@ -41,10 +41,14 @@
   }
 
   .buttons .content {
-    height: 120px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .buttons .btn {
+    font-size: 12px;
+    max-width: 95%;
   }
 
   .background-map {
