@@ -14,6 +14,8 @@
     name: "Speak",
     methods: {
       startButton(event) {
+        responsiveVoice.setDefaultVoice("US English Female");
+
         const luisUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/180cb4ca-9c66-42d9-b922-cec6b59a1934?subscription-key=029d627f757d4d8494495c92dc3c5742&timezoneOffset=-360&q=';
         let finalTranscript = '';
         let recognition = new webkitSpeechRecognition();
@@ -28,6 +30,7 @@
         const remindUnchecked = 'remind_unchecked';
         const addItem = 'add_item';
         const goodBye = 'good_bye';
+        const tsunami = 'tsunami';
 
         const errMsg = 'Error, I think developers screwed a bit. ha ha.';
         const notClearMsg = 'I do not understand you. Repeat again please.';
@@ -43,30 +46,6 @@
             "items": [
               "Clothing",
               "Medication"
-            ]
-          },
-          {
-            "title": "Earthquakes",
-            "type": "earthquake",
-            "items": [
-              "Tools and supplies",
-              "Water"
-            ]
-          },
-          {
-            "title": "Floods",
-            "type": "flood",
-            "items": [
-              "Medication",
-              "First aid kit"
-            ]
-          },
-          {
-            "title": "Tsunami",
-            "type": "flood",
-            "items": [
-              "Water",
-              "Food"
             ]
           }
         ];
@@ -97,7 +76,7 @@
           if (list && list.length) {
             list.forEach((ls, index) => {
               msg += `Number ${index + 1}.List name: ${ls.title}.`;
-              let items = ls.items.join(',');
+              let items = ls.items.join('.');
               msg += `Stuff to take with you: ${items}.`;
             });
 
@@ -262,6 +241,12 @@
           return 'Bye! Take care';
         }
 
+        function getTsunamiMsg() {
+          let msg = 'Calm down - according to data from NASA  - there is no tsunami in your region';
+
+          return msg;
+        }
+
         async function processIntent(data) {
           let msg = '';
           let intent = data.topScoringIntent.intent;
@@ -297,6 +282,9 @@
               break;
             case goodBye:
               msg = getGoodByeMsg();
+              break;
+            case tsunami:
+              msg  = getTsunamiMsg();
               break;
             default:
               generateSpeech(notClearMsg);

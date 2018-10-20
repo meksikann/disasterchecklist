@@ -1,6 +1,6 @@
 {
   "project_info": {
-    "project_number": "629237730714",
+    "project_number": "zzz",
     "firebase_url": "https://test-69e58.firebaseio.com",
     "project_id": "test-69e58",
     "storage_bucket": "test-69e58.appspot.com"
@@ -8,28 +8,28 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:629237730714:android:9b023dd8662542b8",
+        "mobilesdk_app_id": "zzz",
         "android_client_info": {
           "package_name": "com.eteam.nasanotification"
         }
       },
       "oauth_client": [
         {
-          "client_id": "629237730714-214b227043oq3c1rlk1egbh447kjceod.apps.googleusercontent.com",
+          "client_id": "zzz",
           "client_type": 1,
           "android_info": {
             "package_name": "com.eteam.nasanotification",
-            "certificate_hash": "7d79255b52028e2e283363af5b21f0c4db7d3a23"
+            "certificate_hash": "zzz"
           }
         },
         {
-          "client_id": "629237730714-jl05n8b2ikih3conjij4hki3a2sc3qqu.apps.googleusercontent.com",
+          "client_id": "zz",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAdqg70C4TczJ1W_xRrE1Ba4t5qJCFvK2k"
+          "current_key": "zzz"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "629237730714-jl05n8b2ikih3conjij4hki3a2sc3qqu.apps.googleusercontent.com",
+              "client_id": "zzz",
               "client_type": 3
             }
           ]
@@ -52,28 +52,28 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:629237730714:android:7c5d4d72afa3fcba",
+        "mobilesdk_app_id": "zzz",
         "android_client_info": {
           "package_name": "com.eteam.nasatestapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "629237730714-er5n6eqjmsc6kbl72414bs8gijaor836.apps.googleusercontent.com",
+          "client_id": "zzz",
           "client_type": 1,
           "android_info": {
             "package_name": "com.eteam.nasatestapp",
-            "certificate_hash": "7d79255b52028e2e283363af5b21f0c4db7d3a23"
+            "certificate_hash": "zzz"
           }
         },
         {
-          "client_id": "629237730714-jl05n8b2ikih3conjij4hki3a2sc3qqu.apps.googleusercontent.com",
+          "client_id": "zzz",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAdqg70C4TczJ1W_xRrE1Ba4t5qJCFvK2k"
+          "current_key": "zzz"
         }
       ],
       "services": {
@@ -84,7 +84,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "629237730714-jl05n8b2ikih3conjij4hki3a2sc3qqu.apps.googleusercontent.com",
+              "client_id": "zzz",
               "client_type": 3
             }
           ]
