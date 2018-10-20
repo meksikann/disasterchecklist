@@ -32,7 +32,7 @@
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
-    <v-content>
+    <v-content :class="{ 'disasters': $route.path == '/disasters' }">
       <v-container fluid>
         <v-slide-y-transition mode="out-in">
           <router-view></router-view>
@@ -60,8 +60,8 @@
         drawer: false,
         fixed: false,
         items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
+          { icon: 'home', title: 'Welcome', to: '/' },
+          { icon: 'fire', title: 'Create a checklist', to: '/disasters' }
         ],
         miniVariant: false,
         right: false,
@@ -71,3 +71,10 @@
     }
   }
 </script>
+
+<style scoped>
+  .disasters {
+    background: url("/static/checklist.jpg") no-repeat;
+    background-size: cover;
+  }
+</style>

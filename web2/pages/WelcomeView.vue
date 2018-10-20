@@ -9,7 +9,7 @@
         <v-layout row wrap justify-space-between class="buttons">
           <v-flex xs6 sm6 md6>
             <div class="content create">
-              <v-btn color="white" large block router to="/create">Create a checklist</v-btn>
+              <v-btn color="white" large block router to="/disasters">Create a checklist</v-btn>
             </div>
           </v-flex>
           <v-flex xs6 sm6 md6>
