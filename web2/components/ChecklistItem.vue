@@ -1,6 +1,5 @@
 <template>
-    <div class="checklist-item" :class="{ 'success': taken }">
-        <input type="checkbox" v-model="taken" />
+    <div class="checklist-item" :class="{ 'success': taken }" @click="toggleTaken">
         <div class="title">{{ title }}</div>
     </div>
 </template>
@@ -12,8 +11,13 @@
                 taken: false,
             }
         },
+        methods: {
+            toggleTaken() {
+                this.taken = !this.taken;
+            },
+        },
         props: {
-            checklistId: String,
+            checklistId: Number,
             title: String,
         },
     }
@@ -21,6 +25,7 @@
 
 <style scoped="scoped">
     .checklist-item {
+        cursor: pointer;
         display: flex;
         flex-direction: row;
         padding: 1rem;

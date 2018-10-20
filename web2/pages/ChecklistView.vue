@@ -1,15 +1,16 @@
 <template>
     <div class="container">
         <input type="text" v-model="title" />
-        <checklist-item checklistId="this.checklistId" v-for="item in items" :key="`${item}`" :title="item" />
-        <add-checklist-item checklistId="this.checklistId" @save="onAdd" v-if="checklist" />
+        <checklist-item :checklistId="checklist.id" v-for="item in items" :key="`${item}`" :title="item" />
+        <add-checklist-item :checklistId="checklist.id" @save="onAdd" v-if="checklist" />
     </div>
 </template>
 
 <script>
     import {
         addChecklist,
-        getChecklist
+        getChecklist,
+        getNextId
     } from '../localStorage/localStorage.js';
     import AddChecklistItem from '../components/AddChecklistItem';
     import ChecklistItem from '../components/ChecklistItem';
@@ -27,13 +28,18 @@
             }
         },
         data: function() {
+            let checklistId;
+            try {
+                checklistId = parseInt(this.$route.params.checklistId, 10);
+            } catch(err) {
+            }
             return {
                 checklist: {
-                    title: 'Empty',
+                    id: checklistId,
                     items: [],
+                    title: 'Empty',
                 },
-                checklistId: undefined,
-            }
+            };
         },
         methods: {
             onAdd: function(checklistItem) {
@@ -47,18 +53,17 @@
                 };
             },
         },
-        beforeMount: function() {
-            console.info(this.checklist);
-            this.checklistId = window.location.hash;
-            if (this.checklistId) {
-                this.checklist = getChecklist(this.checklistId)
+        mounted() {
+            if (this.checklist.id) {
+                this.checklist = getChecklist(this.checklist.id)
             }
-            if (!this.checklist) {
+            if (!this.checklist || !this.checklist.id) {
                 this.checklist = {
-                    title: 'Empty',
+                    id: getNextId(),
                     items: [],
+                    title: 'Empty',
                 };
-                this.checklistId = addChecklist(this.checklist);
+                this.$router.push(`/checklist/${this.checklist.id}`);
             }
         },
     }
