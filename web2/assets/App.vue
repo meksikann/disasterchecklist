@@ -39,11 +39,6 @@
         </v-slide-y-transition>
       </v-container>
     </v-content>
-    <v-footer :fixed="fixed" app>
-      <v-card-actions>
-        <v-btn color="primary" small flat router to="/map">View map</v-btn>
-      </v-card-actions>
-    </v-footer>
   </v-app>
 </template>
 
@@ -60,7 +55,8 @@
         fixed: false,
         items: [
           { icon: 'home', title: 'Welcome', to: '/' },
-          { icon: 'fire', title: 'Create a checklist', to: '/disasters' }
+          { icon: 'fire', title: 'Create a checklist', to: '/disasters' },
+          { icon: 'search', title: 'View map', to: '/map' }
         ],
         miniVariant: false,
         right: false,
