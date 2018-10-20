@@ -5,15 +5,25 @@
 </template>
 
 <script>
+    import {
+        addTakenItem,
+        isItemTaken,
+        removeTakenItem
+    } from '../localStorage/localStorage';
     export default {
         data: function() {
             return {
-                taken: false,
+                taken: isItemTaken(this.title),
             }
         },
         methods: {
             toggleTaken() {
                 this.taken = !this.taken;
+                if (this.taken) {
+                    addTakenItem(this.title);
+                } else {
+                    removeTakenItem(this.title);
+                }
             },
         },
         props: {

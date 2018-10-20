@@ -10,7 +10,8 @@
     import {
         addChecklist,
         getChecklist,
-        getNextId
+        getNextId,
+        setActiveChecklist
     } from '../localStorage/localStorage.js';
     import AddChecklistItem from '../components/AddChecklistItem';
     import ChecklistItem from '../components/ChecklistItem';
@@ -43,7 +44,6 @@
         },
         methods: {
             onAdd: function(checklistItem) {
-                console.info('save handler triggered', checklistItem);
                 this.checklist = {
                     ...this.checklist,
                     items: [
@@ -55,7 +55,7 @@
         },
         mounted() {
             if (this.checklist.id) {
-                this.checklist = getChecklist(this.checklist.id)
+                this.checklist = getChecklist(this.checklist.id);
             }
             if (!this.checklist || !this.checklist.id) {
                 this.checklist = {
@@ -65,6 +65,7 @@
                 };
                 this.$router.push(`/checklist/${this.checklist.id}`);
             }
+            setActiveChecklist(this.checklist.id);
         },
     }
 </script>

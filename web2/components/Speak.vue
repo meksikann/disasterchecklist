@@ -11,15 +11,19 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: "Speak",
     methods: {
       startButton(event) {
+        const luisUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/180cb4ca-9c66-42d9-b922-cec6b59a1934?subscription-key=029d627f757d4d8494495c92dc3c5742&timezoneOffset=-360&q=';
         let finalTranscript = '';
         let recognition = new webkitSpeechRecognition();
         const show = 'show';
         const give = 'give';
         const mark = 'mark';
+        const greeting = 'greeting';
         const uncheck = 'uncheck';
         const errMsg = 'Error, I think developers screwed a bit. ha ha.';
         const notClearMsg = 'I do not understand you. Repeat again please.';
@@ -59,23 +63,23 @@
             ]
           }
         ];
-         let activeDump = {
-           "title": "Tsunami",
-           "type": "flood",
-           "items": [
-             "Water",
-             "Food"
-           ]
-         };
+        let activeDump = {
+          "title": "Tsunami",
+          "type": "flood",
+          "items": [
+            "Water",
+            "Food"
+          ]
+        };
 
-         let takenItemsDump = ['Food'];
-         localStorage.setItem(`checklists`, JSON.stringify(checklist));
-         localStorage.setItem(`active`, JSON.stringify(activeDump));
-         localStorage.setItem(`taken_items`, JSON.stringify( takenItemsDump));
-         //*************************************************************************
+        let takenItemsDump = ['Food'];
+        localStorage.setItem(`checklists`, JSON.stringify(checklist));
+        localStorage.setItem(`active`, JSON.stringify(activeDump));
+        localStorage.setItem(`taken_items`, JSON.stringify(takenItemsDump));
+        //*************************************************************************
         //*********************************************************************
 
-        function  generateSpeech(text) {
+        function generateSpeech(text) {
           responsiveVoice.speak(text);
         };
 
@@ -83,9 +87,9 @@
           let list = JSON.parse(localStorage.getItem('checklists'));
           let msg = '';
 
-          if(list && list.length) {
-            list.forEach((ls, index)=> {
-              msg += `Number ${index+1}.List name: ${ls.title}.`;
+          if (list && list.length) {
+            list.forEach((ls, index) => {
+              msg += `Number ${index + 1}.List name: ${ls.title}.`;
               let items = ls.items.join(',');
               msg += `Stuff to take with you: ${items}.`;
             });
@@ -96,21 +100,21 @@
           return 'you do not have checklists';
         }
 
-        function markItem(utterance){
+        function markItem(utterance) {
           let active = JSON.parse(localStorage.getItem('active'));
           let takenItems = JSON.parse(localStorage.getItem('taken_items'));
           let items = [];
           let msg = '';
 
-          if(active) {
+          if (active) {
             items = active.items;
           }
 
-          if(!takenItems) {
+          if (!takenItems) {
             takenItems = [];
           }
 
-          takenItems.map((item)=>{
+          takenItems.map((item) => {
             return item.toLowerCase();
           });
 
@@ -122,12 +126,12 @@
           console.log(utterance);
 
           // add items to taken list
-          items.forEach((item)=>{
+          items.forEach((item) => {
             item = item.toLowerCase();
-            if(utterance.includes(item)) {
-              if(takenItems.indexOf(item) < 0){
+            if (utterance.includes(item)) {
+              if (takenItems.indexOf(item) < 0) {
                 takenItems.push(item);
-                msg+= `${item}, `;
+                msg += `${item}, `;
               }
             }
           });
@@ -143,6 +147,7 @@
           console.log('start');
         };
         recognition.onresult = function (event) {
+
           console.log('result', event)
           var interim_transcript = '';
           let msg = '';
@@ -156,20 +161,35 @@
           }
 
           finalTranscript = finalTranscript.toLowerCase();
-          console.log('recognized: ',finalTranscript);
+          console.log('recognized: ', finalTranscript);
 
-          // reconise intent ==================>>>>>
-          if(finalTranscript.includes(show) || finalTranscript.includes(give)) {
-            msg = getCheckLists();
 
-            generateSpeech(msg);
-          } else if(finalTranscript.includes(mark)){
-            msg = markItem(finalTranscript);
+          // get intent from LUIS
+          axios.get(`${luisUrl}${finalTranscript}`)
+            .then(response => {
+              console.log(response.data);
 
-            generateSpeech(msg);
-          } else {
-            generateSpeech(notClearMsg);
-          }
+              let intent = response.data.topScoringIntent.intent;
+
+              switch (intent) {
+                case greeting:
+                  msg = 'Hello how can I help you?';
+                  break;
+                case mark:
+                  msg = markItem(finalTranscript);
+                  break;
+                case show:
+                  msg = getCheckLists();
+                  break;
+                default:
+                  generateSpeech(notClearMsg);
+              }
+              generateSpeech(msg);
+            })
+            .catch(e => {
+              console.error(e);
+              generateSpeech(errMsg);
+            });
         };
 
         recognition.onerror = function (event) {

@@ -1,4 +1,6 @@
+const ACTIVE_STORAGE_KEY = "active";
 const CHECKLISTS_STORAGE_KEY = "checklists";
+const TAKEN_ITEMS_STORAGE_KEY = "taken_items";
 
 try {
   let data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY));
@@ -9,7 +11,6 @@ try {
 }
 
 export function addChecklist(checklist) {
-  console.info(`addChecklist(${checklist})`);
   let data;
   try {
     data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY));
@@ -25,7 +26,6 @@ export function addChecklist(checklist) {
   } catch(err) {
     newId = 1;
   }
-  console.info('new id', newId);
   checklistToSave.id = data.length > 0 ? parseInt(data[data.length - 1].id, 10) + 1 : 1;
   data.push(checklistToSave);
   localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
@@ -33,10 +33,9 @@ export function addChecklist(checklist) {
 }
 
 export function addChecklistItem(checklistId, checklistItem) {
-  console.info(`addChecklistItem(${checklistId}, ${checklistItem})`)
   let data;
   try {
-    data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY))
+    data = JSON.parse(localStorage.getItem(TAKEN_ITEMS_STORAGE_KEY))
   } catch (err) {
     data = []
   }
@@ -48,7 +47,13 @@ export function addChecklistItem(checklistId, checklistItem) {
   checklist.items.push(checklistItem);
   data = data.filter(checklist => checklist.id !== checklistId);
   data.push(checklist);
-  localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
+  localStorage.setItem(TAKEN_ITEMS_STORAGE_KEY, JSON.stringify(data));
+}
+
+export function addTakenItem(takenItem) {
+  const takenItems = getTakenItems();
+  takenItems.push(takenItem);
+  localStorage.setItem(TAKEN_ITEMS_STORAGE_KEY, JSON.stringify(takenItems));
 }
 
 export function deleteChecklist(checklistId) {
@@ -90,4 +95,35 @@ export function getNextId() {
   } catch (err) {
     return 1;
   }
+}
+
+export function getTakenItems() {
+  try {
+    const takenItems = JSON.parse(localStorage.getItem(TAKEN_ITEMS_STORAGE_KEY));
+    if (!takenItems.push) return [];
+    return takenItems;
+  } catch (err) {
+    return [];
+  }
+}
+
+export function isItemTaken(item) {
+  return getTakenItems().includes(item);
+}
+
+export function removeTakenItem(notTakenItem) {
+  let takenItems = getTakenItems();
+  takenItems = takenItems.filter(takenItem => takenItem !== notTakenItem);
+  localStorage.setItem(TAKEN_ITEMS_STORAGE_KEY, takenItems);
+}
+
+export function setActiveChecklist(checklistId) {
+  let data;
+  try {
+    data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY))
+  } catch (err) {
+    data = []
+  }
+  const checklist = data.find(checklist => checklist.id === checklistId);
+  localStorage.setItem(ACTIVE_STORAGE_KEY, JSON.stringify(checklist));
 }

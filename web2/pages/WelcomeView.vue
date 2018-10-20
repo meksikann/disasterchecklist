@@ -1,6 +1,6 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
+  <v-layout column justify-center align-center class="main-layout">
+    <v-flex xs12 sm8 md6 class="center">
       <div class="text-xs-center background-map">
         <img src="/static/map.jpg" alt="Map" class="mb-5"/>
       </div>
@@ -8,46 +8,78 @@
         <v-layout row wrap justify-space-between class="buttons">
           <v-flex xs6 sm6 md6>
             <div class="content create">
-              <v-btn color="white" large block router to="/disasters">Create a checklist</v-btn>
+              <v-btn color="rgba(98, 61, 189, .7)" large block router to="/disasters">
+                <div>
+                  <v-icon large>add_circle</v-icon>
+                  create checklist
+                </div>
+              </v-btn>
             </div>
           </v-flex>
           <v-flex xs6 sm6 md6>
             <div class="content">
-              <v-btn color="white" large block router to="/view">View</v-btn>
+              <v-btn color="rgba(45, 137, 239, .7)" large block router to="/view">
+                <div>
+                  <v-icon large>edit</v-icon>
+                  view
+                </div>
+              </v-btn>
             </div>
           </v-flex>
           <v-flex xs6 sm6 md6>
             <div class="content">
-              <v-btn color="white" large block router to="/use">Use</v-btn>
+              <v-btn color="rgba(217, 83, 44, .7)" large block router to="/use">
+                <div>
+                  <v-icon large>view_list</v-icon>
+                  use
+                </div>
+              </v-btn>
             </div>
           </v-flex>
           <v-flex xs6 sm6 md6>
             <div class="content">
-              <Speak></Speak>
+              <v-btn color="rgba(187, 29, 71, .7)" large block router to="/use">
+                <div>
+                  <v-icon large>warning</v-icon>
+                  Report a disaster
+                </div>
+              </v-btn>
             </div>
           </v-flex>
         </v-layout>
-        <!--<v-card-actions>-->
-          <!--<v-btn color="primary" flat router to="/inspire">Continue</v-btn>-->
-        <!--</v-card-actions>-->
       </v-card>
     </v-flex>
   </v-layout>
 </template>
 <style scoped>
+  .main-layout {
+    height: calc(100vh - 132px);
+  }
+  .center {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
   .buttons {
     text-align: center;
   }
 
   .buttons .content {
-    height: 80px;
+    height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 8px;
   }
-  .buttons .btn {
-    font-size: 12px;
+  .buttons .v-btn {
+    font-size: 15px;
     max-width: 95%;
+    height: 100%;
+    color: #fff;
+  }
+  .buttons .v-btn i {
+    display: block;
+    margin-bottom: 15px;
   }
 
   .background-map {
