@@ -1,15 +1,74 @@
 {
-  "checklists": [{
-    "items": [
-      "papers",
-      "money",
-      "food"
-    ],
-    "title": "Fire",
-    "type": "fire"
-  }],
-  "items": [{
-    "description": "",
-    "title": "knife"
-  }]
+  "checklists": [
+    {
+      "title": "Wildfires",
+      "type": "fire",
+      "items": [
+        "Clothing",
+        "Medication"
+      ]
+    },
+    {
+      "title": "Earthquakes",
+      "type": "earthquake",
+      "items": [
+        "Tools and supplies",
+        "Water"
+      ]
+    },
+    {
+      "title": "Floods",
+      "type": "flood",
+      "items": [
+        "Medication",
+        "First aid kit"
+      ]
+    },
+    {
+      "title": "Tsunami",
+      "type": "flood",
+      "items": [
+        "Water",
+        "Food"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "title": "Water",
+      "description": "It's recommended to have one gallon of water per day per person. You should keep at least three gallons each per person at home."
+    },
+    {
+      "title": "Food",
+      "description": "You should have at least three days' worth of food. Concentrate on non-perishable food that doesn't require refrigeration or much prep and water."
+    },
+    {
+      "title": "Medication",
+      "description": "Have some extra medication on hand for times when disaster strikes and you can't leave your home to refill your prescription."
+    },
+    {
+      "title": "First aid kit",
+      "description": "It should have latex gloves, gauze pads, a thermometer, sterile bandages, Band-Aids, petroleum jelly, salve for burns, antibiotic ointment, adhesive tape, towelettes, hand sanitizers, sunscreen, and instant cold packs."
+    },
+    {
+      "title": "Tools and supplies",
+      "description": "This includes items such as candles, matches in a waterproof container, scissors, tweezers, a sewing kit, a flashlight, extra batteries, a small fire extinguisher, a manual can opener, etc."
+    },
+    {
+      "title": "Hygiene products",
+      "description": "Toilet paper, feminine products and toiletries."
+    },
+    {
+      "title": "Cleaning products",
+      "description": "Garbage bags, dish soap, bleach, disinfectant."
+    },
+    {
+      "title": "Clothing",
+      "description": "Rain gear, at least one outfit, work boots or durable sneakers, and thermal underwear."
+    },
+    {
+      "title": "Important documents and items",
+      "description": "Cash, driver's license, passport, social security card, family records, bank account numbers, and a list of important and emergency phone numbers."
+    }
+  ]
 }
