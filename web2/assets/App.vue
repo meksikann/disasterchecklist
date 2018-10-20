@@ -37,6 +37,7 @@
         <v-slide-y-transition mode="out-in">
           <router-view></router-view>
         </v-slide-y-transition>
+        <speak></speak>
       </v-container>
     </v-content>
   </v-app>
@@ -44,10 +45,10 @@
 
 <script>
   import Meta from 'mixins/meta'
-
+  import Speak from "../components/Speak";
   export default {
     mixins: [Meta],
-
+    components: {Speak},
     data () {
       return {
         clipped: true,

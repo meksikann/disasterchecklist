@@ -21,7 +21,7 @@
 </template>
 
 <style scoped>
-  .layout>.flex {
+  .layout > .flex {
     width: 100%;
   }
   .content {

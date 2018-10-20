@@ -51,12 +51,12 @@ Object.keys(Components).forEach(key => {
 // app instances on each call (which is called for each SSR request)
 export function createApp (ssrContext) {
   // create store and router instances
-  const store = createStore()
-  const router = createRouter()
+  const store = createStore();
+  const router = createRouter();
 
   // sync the router with the vuex store.
   // this registers `store.state.route`
-  sync(store, router)
+  sync(store, router);
 
   // create the app instance.
   // here we inject the router, store and ssr context to all child components,
@@ -66,7 +66,7 @@ export function createApp (ssrContext) {
     store,
     ssrContext,
     render: h => h(App)
-  })
+  });
 
   // expose the app, the router and the store.
   // note we are not mounting the app here, since bootstrapping will be

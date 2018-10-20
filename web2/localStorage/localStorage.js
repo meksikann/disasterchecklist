@@ -77,6 +77,16 @@ export function getChecklist(checklistId) {
   return data.find(checklist => checklist.id === checklistId);
 }
 
+export function getAllChecklist(){
+  let data;
+  try {
+    data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY))
+  } catch (err) {
+    data = []
+  }
+  return data;
+}
+
 export function getNextId() {
   let data;
   try {
