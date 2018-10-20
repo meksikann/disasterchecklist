@@ -1,0 +1,15 @@
+{
+  "checklists": [{
+    "items": [
+      "papers",
+      "money",
+      "food"
+    ],
+    "title": "Fire",
+    "type": "fire"
+  }],
+  "items": [{
+    "description": "",
+    "title": "knife"
+  }]
+}
