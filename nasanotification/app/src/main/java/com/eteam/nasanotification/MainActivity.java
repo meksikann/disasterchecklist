@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        String url = "zzz";
+        String url = "https://192.168.88.207:8080";
         Bundle extras = getIntent().getExtras();
         if ((extras != null) && (extras.containsKey("link"))){
             url = getIntent().getExtras().getString("link");
