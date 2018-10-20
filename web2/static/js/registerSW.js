@@ -1,28 +1,29 @@
 // Hard-coded, replace with your public key
 const publicVapidKey = 'BEg8fDDy7YAz3PQoDCgQ84BAVNZl7AIPFwRCHaTGaOleKWA36WHpOkCiuRtU9tBePLwGIhj13jJEFpQLWIpltD8';
 
+console.log('first alert');
+
 if ('serviceWorker' in navigator) {
   console.log('Registering service worker');
-
-  run().catch(error => console.error(error));
+  // alert('SW exist');
+  run().catch(error => console.log(error));
 }
 
 async function run() {
+  try {
   console.log('Registering service worker');
-  const registration = await navigator.serviceWorker.
-  register('/service-worker.js', {scope: '/'});
+  const registration = await navigator.serviceWorker.register(`/static/js/service-worker.js`);
   console.log('Registered service worker');
-
   console.log('Registering push');
-  const subscription = await registration.pushManager.
-  subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
-  });
+  let subscription;
+    subscription = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
+    });
   console.log('Registered push');
 
   console.log('Sending push');
-  await fetch('/notifications/subscribe', {
+  await fetch('http://localhost:3000/notifications/subscribe', {
     method: 'POST',
     body: JSON.stringify(subscription),
     headers: {
@@ -30,6 +31,9 @@ async function run() {
     }
   });
   console.log('Sent push');
+  } catch (e) {
+    alert(e);
+  }
 }
 
 function urlBase64ToUint8Array(base64String) {

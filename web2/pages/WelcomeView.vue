@@ -1,6 +1,5 @@
 <template>
   <v-layout column justify-center align-center>
-    <Speak></Speak>
     <v-flex xs12 sm8 md6>
       <div class="text-xs-center background-map">
         <img src="/static/map.jpg" alt="Map" class="mb-5"/>
@@ -9,7 +8,7 @@
         <v-layout row wrap justify-space-between class="buttons">
           <v-flex xs6 sm6 md6>
             <div class="content create">
-              <v-btn color="white" large block router to="/create">Create a checklist</v-btn>
+              <v-btn color="white" large block router to="/disasters">Create a checklist</v-btn>
             </div>
           </v-flex>
           <v-flex xs6 sm6 md6>
@@ -24,7 +23,7 @@
           </v-flex>
           <v-flex xs6 sm6 md6>
             <div class="content">
-              <v-btn color="white" large block @click="startButton()">Talk</v-btn>
+              <Speak></Speak>
             </div>
           </v-flex>
         </v-layout>

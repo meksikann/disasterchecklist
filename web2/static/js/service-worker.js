@@ -1,6 +1,6 @@
 'use strict';
-
-const version = '0.0.1';
+logger('sw open');
+const version = '0.0.2';
 
 const STATIC_CACHE_NAME = 'shell-content - ' + version;
 
@@ -8,18 +8,8 @@ const staticUrls = [
   "index.html"
 ];
 
-console.log(caches);
-
 self.addEventListener('install', evt => {
   logger('installed');
-  logger('start cashing');
-  evt.waitUntil(
-    preCache()
-      .then(() => self.skipWaiting()
-        .then(() => logger('files was cashed'))
-        .catch(err => logger("Cache error " + err, true))
-      ));
-
 });
 
 self.addEventListener('push', ev => {
@@ -31,11 +21,6 @@ self.addEventListener('push', ev => {
   });
 });
 
-function preCache() {
-  return Promise.all([
-    caches.open(STATIC_CACHE_NAME).then(cache => cache.addAll(staticUrls))
-  ]);
-}
 
 function logger(msg, isError = false) {
   isError
