@@ -4,15 +4,13 @@
     <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
     <v-flex xs12 sm8 md6>
       <div>
-        <v-btn id="start_button" @click="startButton()">Talk 🔊</v-btn>
-        <v-btn id="start_button" @click="generateSpeech('this a test')">generate Speech</v-btn>
+        <v-btn color="white" large block @click="startButton()">Talk 🔊</v-btn>
       </div>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-  import  test from ''
   export default {
     name: "Speak",
     methods: {
@@ -20,7 +18,7 @@
         let finalTranscript = '';
         let recognition = new webkitSpeechRecognition();
 
-        // TODO: REmove **************************************
+        // TODO: remove this mock
         let checklist = ['medicine','water','passport','money'];
          localStorage.setItem(`checklist`, JSON.stringify(checklist));
 
@@ -53,29 +51,30 @@
               interim_transcript += event.results[i][0].transcript;
             }
           }
-          console.log(finalTranscript);
+          console.log('recognized: ',finalTranscript);
+          console.log(finalTranscript.includes('show'));
+
+
 
           // reconize intent ==================>>>>>
-          switch (finalTranscript.toLocaleLowerCase()) {
-            case finalTranscript.includes('show'):
-              let msg = '';
-              let list = getCheckList();
+          if(finalTranscript.includes('show')) {
+            let msg = '';
+            let list = getCheckList();
 
-              console.log(list);
+            console.log(list);
 
-              if(list && list.length) {
-                msg = list.join(',');
-              } else {
-                msg = 'There are no items in list';
-              }
-              generateSpeech(msg);
+            // show check lists
+            if(list && list.length) {
+              msg = list.join(',');
+            } else {
+              msg = 'There are no items in list';
+            }
+            generateSpeech(msg);
 
-              break;
-            default:
-              generateSpeech('I do not understand you. Repeat again please.');
+          } else {
+            generateSpeech('I do not understand you. Repeat again please.');
           }
 
-          // generateSpeech(finalTranscript);
         };
         recognition.onerror = function (event) {
           console.log('error')
