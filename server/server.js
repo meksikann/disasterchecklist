@@ -11,6 +11,8 @@ const cors = require('cors');
 const config = require('./config');
 const tts = require('./tts');
 
+const notificationRoute = require('./routes/notification.route');
+
 const app = express();
 app.set('port', config.port);
 
@@ -29,6 +31,7 @@ app.use((req, res, next) => {
     return next();
 });
 
+app.use('/notifications', notificationRoute);
 
 app.get('/', (req, res) => res.send('Disaster Assistant AP'));
 app.get('/checklist', (req, res) => {
