@@ -40,7 +40,10 @@
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
+      <v-card-actions>
+        <v-btn color="primary" small flat router to="/map">View map</v-btn>
+        <v-btn color="primary" small flat router to="/view">Report a disaster</v-btn>
+      </v-card-actions>
     </v-footer>
   </v-app>
 </template>
@@ -63,7 +66,7 @@
         miniVariant: false,
         right: false,
         rightDrawer: false,
-        title: 'Vuetify.js'
+        title: 'Disaster checklist'
       }
     }
   }

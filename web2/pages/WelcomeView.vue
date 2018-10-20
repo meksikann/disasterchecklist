@@ -1,64 +1,89 @@
 <template>
   <v-layout column justify-center align-center>
+    <Speak></Speak>
     <v-flex xs12 sm8 md6>
-      <div class="text-xs-center">
-        <img src="/static/v.png" alt="Vuetify.js" class="mb-5" />
+      <div class="text-xs-center background-map">
+        <img src="/static/map.jpg" alt="Map" class="mb-5"/>
       </div>
-      <v-card>
-        <v-card-text>
-          <p>Welcome to the Webpack SSR template.</p>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications. For more information on Vuetify, check out the <a href="https://vuetifyjs.com" target="_blank">documentation</a>. If you have questions, please join the official <a href="https://gitter.im/vuetifyjs/Lobby" target="_blank" title="chat">gitter</a>. Find a bug? Report it on the github <a href="https://github.com/vuetifyjs/vuetify/issues" target="_blank" title="contribute">issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn color="primary" flat router to="/inspire">Continue</v-btn>
-          <div class="right">
-            <button id="start_button" @click="startButton()">Talk</button>
-          </div>
-        </v-card-actions>
+      <v-card flat color="transparent">
+        <v-layout row wrap justify-space-between class="buttons">
+          <v-flex xs6 sm6 md6>
+            <div class="content create">
+              <v-btn color="white" large block router to="/create">Create a checklist</v-btn>
+            </div>
+          </v-flex>
+          <v-flex xs6 sm6 md6>
+            <div class="content">
+              <v-btn color="white" large block router to="/view">View</v-btn>
+            </div>
+          </v-flex>
+          <v-flex xs6 sm6 md6>
+            <div class="content">
+              <v-btn color="white" large block router to="/use">Use</v-btn>
+            </div>
+          </v-flex>
+          <v-flex xs6 sm6 md6>
+            <div class="content">
+              <v-btn color="white" large block @click="startButton()">Talk</v-btn>
+            </div>
+          </v-flex>
+        </v-layout>
+        <!--<v-card-actions>-->
+          <!--<v-btn color="primary" flat router to="/inspire">Continue</v-btn>-->
+        <!--</v-card-actions>-->
       </v-card>
     </v-flex>
   </v-layout>
 </template>
+<style scoped>
+  .buttons {
+    text-align: center;
+  }
+
+  .buttons .content {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .buttons .btn {
+    font-size: 12px;
+    max-width: 95%;
+  }
+
+  .background-map {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+
+  /*.background-map img {*/
+  /*position: absolute;*/
+  /*top: -9999px;*/
+  /*left: -9999px;*/
+  /*right: -9999px;*/
+  /*bottom: -9999px;*/
+  /*margin: auto;*/
+  /*min-width: 100%;*/
+  /*min-height: 100%;*/
+  /*}*/
+
+  .background-map::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .3);
+  }
+</style>
 
 <script>
-
-  export default{
-    data(){
-      return {
-
-      }
-    },
-    methods: {
-      startButton(event) {
-        let finalTranscript = '';
-       let recognition = new webkitSpeechRecognition();
-        recognition.onstart = function() {
-          console.log('start')
-        };
-        recognition.onresult = function(event) {
-          console.log('result', event)
-          var interim_transcript = '';
-
-          for (var i = event.resultIndex; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-              finalTranscript += event.results[i][0].transcript;
-            } else {
-              interim_transcript += event.results[i][0].transcript;
-            }
-          }
-         console.log(finalTranscript);
-
-        };
-        recognition.onerror = function(event) { console.log('error') };
-        recognition.onend = function() { console.log('end')};
-        console.log('test')
-
-        recognition.start();
-      }
-    }
+  import Speak from "../components/Speak";
+  export default {
+    components: {Speak}
   }
 </script>
