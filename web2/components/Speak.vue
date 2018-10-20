@@ -1,8 +1,11 @@
 <template>
+
   <v-layout column justify-center align-center>
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
     <v-flex xs12 sm8 md6>
       <div>
-        <v-btn id="start_button" @click="startButton()">Talk</v-btn>
+        <v-btn id="start_button" @click="startButton()">Talk 🔊</v-btn>
+        <v-btn id="start_button" @click="generateSpeech('this a test')">generate Speech</v-btn>
       </div>
     </v-flex>
   </v-layout>
@@ -42,6 +45,9 @@
         };
 
         recognition.start();
+      },
+      generateSpeech(text) {
+        responsiveVoice.speak(text);
       }
     }
   }
