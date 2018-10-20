@@ -1,10 +1,10 @@
 <template>
-    <div id="speak">
-      <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
-      <v-btn color="info" fab large dark @click="startButton()">
-        <v-icon>mic</v-icon>
-      </v-btn>
-    </div>
+  <div id="speak">
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+    <v-btn color="info" fab large dark @click="startButton()">
+      <v-icon>mic</v-icon>
+    </v-btn>
+  </div>
 </template>
 
 <script>
@@ -17,6 +17,7 @@
         const luisUrl = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/180cb4ca-9c66-42d9-b922-cec6b59a1934?subscription-key=029d627f757d4d8494495c92dc3c5742&timezoneOffset=-360&q=';
         let finalTranscript = '';
         let recognition = new webkitSpeechRecognition();
+
         const show = 'show';
         const resetList = 'reset_list';
         const mark = 'mark';
@@ -25,6 +26,9 @@
         const uncheck = 'uncheck';
         const notify = 'notify';
         const remindUnchecked = 'remind_unchecked';
+        const addItem = 'add_item';
+        const goodBye = 'good_bye';
+
         const errMsg = 'Error, I think developers screwed a bit. ha ha.';
         const notClearMsg = 'I do not understand you. Repeat again please.';
         const helpMsg = 'Ok. First of all - calm down. Go and choose checklist to take necessary stuff with you.' +
@@ -207,23 +211,45 @@
         }
 
         function notifyAll() {
-          let msg = 'Notification has been sent';
-
-          axios({
-            method: 'post',
-            url: '/user/12345',
-            data: {
-              firstName: 'Fred',
-              lastName: 'Flintstone'
-            }
-          }).then((res)=>{
-            return msg;
-          }).catch(err=>{
-            return 'Something went wrong with notifications'
-          })
+          // let msg = 'Notification has been sent';
+          //
+          // axios({
+          //   method: 'post',
+          //   url: '/user/12345',
+          //   data: {
+          //     firstName: 'Fred',
+          //     lastName: 'Flintstone'
+          //   }
+          // }).then((res)=>{
+          //   return msg;
+          // }).catch(err=>{
+          //   return 'Something went wrong with notifications'
+          // })
         }
 
-        async function processIntent(data){
+        function addItemToList(data) {
+          let msg = '';
+          let entities = data.entities;
+          let takenItems = JSON.parse(localStorage.getItem('taken_items'));
+
+          if (!takenItems) {
+            takenItems = [];
+          }
+
+          entities.forEach(ent => {
+            takenItems.push(ent.entity);
+            msg += ` ${ent.entity},`;
+          });
+          msg += ' added to list';
+
+          return msg;
+        }
+
+        function getGoodByeMsg() {
+          return 'Bye! Take care';
+        }
+
+        async function processIntent(data) {
           let msg = '';
           let intent = data.topScoringIntent.intent;
 
@@ -251,6 +277,13 @@
               break;
             case notify:
               msg = await notifyAll();
+              break;
+            case addItem:
+              msg = addItemToList(data);
+
+              break;
+            case goodBye:
+              msg = getGoodByeMsg();
               break;
             default:
               generateSpeech(notClearMsg);
