@@ -19,12 +19,12 @@
             save: function() {
                 addChecklistItem(this.checklistId,
                     this.title);
-                this.title = "New item";
                 this.$emit('save', this.title)
+                this.title = "New item";
             },
         },
         props: {
-            checklistId: String,
+            checklistId: Number,
         }
     }
 </script>
