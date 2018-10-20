@@ -24,6 +24,8 @@ export function createRouter () {
       routes: [
         route('/', 'Welcome'),
         route('/create', 'Create'),
+        route('/disaster-fire', 'Fires'),
+        route('/disaster-flood', 'Floods'),
         route('/map', 'Map'),
         // Global redirect for 404
         { path: '*', redirect: '/' }
