@@ -12,11 +12,10 @@
 </template>
 
 <script>
-  import { VCarousel } from 'vuetify'
   export default {
     data: function() {
       return {
-        image: ['/static/fires_1.jpg'],
+        image: '/static/flood_1.jpg',
         description: '',
         descriptionOpen: false
       }

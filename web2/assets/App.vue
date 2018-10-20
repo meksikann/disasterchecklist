@@ -1,5 +1,5 @@
 <template>
-  <v-app light>
+  <v-app dark>
     <v-navigation-drawer
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -24,10 +24,10 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+    <v-toolbar fixed class="main">
+      <v-toolbar-side-icon dark @click.stop="drawer = !drawer"></v-toolbar-side-icon>
     </v-toolbar>
-    <v-toolbar fixed app :clipped-left="clipped">
+    <v-toolbar dark fixed app :clipped-left="clipped" class="main">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
@@ -56,21 +56,27 @@
         fixed: false,
         items: [
           { icon: 'home', title: 'Welcome', to: '/' },
-          { icon: 'fire', title: 'Create a checklist', to: '/disasters' },
+          { icon: 'add_circle', title: 'Create a checklist', to: '/disasters' },
           { icon: 'search', title: 'View map', to: '/map' }
         ],
         miniVariant: false,
         right: false,
         rightDrawer: false,
-        title: 'Disaster checklist'
+        title: this.$route.name
+      }
+    },
+
+    watch: {
+      '$route' (to, from) {
+        this.title = to.name;
       }
     }
   }
 </script>
 
 <style scoped>
-  .disasters {
-    background: #78868D;
-    background-size: cover;
+  .main {
+    background: #424242;
+    color: #fff;
   }
 </style>

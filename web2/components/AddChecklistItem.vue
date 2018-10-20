@@ -1,7 +1,7 @@
 <template>
     <div class="checklist-item">
-        <input class="title" type="text" v-model="title" />
-        <button @click="save">Save</button>
+        <input class="item-title" type="text" v-model="title" />
+        <v-btn class="btn" @click="save">Save</v-btn>
     </div>
 </template>
 
@@ -30,9 +30,13 @@
 </script>
 
 <style scoped>
-    button {
+    .btn {
+        cursor: pointer;
         flex-grow: 0;
-        position: absolute;
+        height: 4rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        position: absolute !important;
         right: 0.2rem;
     }
     
@@ -44,8 +48,10 @@
         width: 100%;
     }
     
-    .title {
-        text-align: center;
+    .item-title {
         flex-grow: 1;
+        font-size: 2rem;
+        height: 4rem;
+        text-align: center;
     }
 </style>

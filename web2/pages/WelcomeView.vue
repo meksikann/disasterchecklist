@@ -18,27 +18,17 @@
           </v-flex>
           <v-flex xs6 sm6 md6>
             <div class="content">
-              <v-btn color="rgba(45, 137, 239, .7)" large block router to="/view">
+              <v-btn color="rgba(45, 137, 239, .7)" large block router to="/checklist">
                 <div>
-                  <v-icon large>edit</v-icon>
-                  view
+                  <v-icon large>list</v-icon>
+                  My checklists
                 </div>
               </v-btn>
             </div>
           </v-flex>
-          <v-flex xs6 sm6 md6>
+          <v-flex xs12 sm12 md12>
             <div class="content">
-              <v-btn color="rgba(217, 83, 44, .7)" large block router to="/use">
-                <div>
-                  <v-icon large>view_list</v-icon>
-                  use
-                </div>
-              </v-btn>
-            </div>
-          </v-flex>
-          <v-flex xs6 sm6 md6>
-            <div class="content">
-              <v-btn color="rgba(187, 29, 71, .7)" large block router to="/use">
+              <v-btn color="rgba(187, 29, 71, .7)" large block router to="/disasters">
                 <div>
                   <v-icon large>warning</v-icon>
                   Report a disaster
@@ -65,22 +55,36 @@
     text-align: center;
   }
 
-  .buttons .content {
+  .content {
     height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 8px;
   }
+
+  .buttons .xs12 .content {
+    height: 60px;
+  }
+
+  .buttons .xs12 .v-btn i {
+    margin-bottom: 5px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .buttons .xs12 .v-btn {
+    font-size: 12px;
+  }
+  .buttons .xs6 {
+    max-width: 49%;
+  }
   .buttons .v-btn {
     font-size: 15px;
-    max-width: 95%;
     height: 100%;
     color: #fff;
   }
   .buttons .v-btn i {
     display: block;
-    margin-bottom: 15px;
   }
 
   .background-map {
