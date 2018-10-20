@@ -55,13 +55,19 @@
         fixed: false,
         items: [
           { icon: 'home', title: 'Welcome', to: '/' },
-          { icon: 'fire', title: 'Create a checklist', to: '/disasters' },
+          { icon: 'list', title: 'Create a checklist', to: '/disasters' },
           { icon: 'search', title: 'View map', to: '/map' }
         ],
         miniVariant: false,
         right: false,
         rightDrawer: false,
-        title: 'Disaster checklist'
+        title: this.$route.name
+      }
+    },
+
+    watch: {
+      '$route' (to, from) {
+        this.title = to.name;
       }
     }
   }
