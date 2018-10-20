@@ -15,8 +15,50 @@
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" flat router to="/inspire">Continue</v-btn>
+          <div class="right">
+            <button id="start_button" @click="startButton()">Talk</button>
+          </div>
         </v-card-actions>
       </v-card>
     </v-flex>
   </v-layout>
 </template>
+
+<script>
+
+  export default{
+    data(){
+      return {
+
+      }
+    },
+    methods: {
+      startButton(event) {
+        let finalTranscript = '';
+       let recognition = new webkitSpeechRecognition();
+        recognition.onstart = function() {
+          console.log('start')
+        };
+        recognition.onresult = function(event) {
+          console.log('result', event)
+          var interim_transcript = '';
+
+          for (var i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              finalTranscript += event.results[i][0].transcript;
+            } else {
+              interim_transcript += event.results[i][0].transcript;
+            }
+          }
+         console.log(finalTranscript);
+
+        };
+        recognition.onerror = function(event) { console.log('error') };
+        recognition.onend = function() { console.log('end')};
+        console.log('test')
+
+        recognition.start();
+      }
+    }
+  }
+</script>
