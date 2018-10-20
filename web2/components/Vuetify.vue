@@ -1,3 +1,3 @@
 <template>
-  <h1>Vuetify</h1>
+  <h1>Disaster checklist</h1>
 </template>

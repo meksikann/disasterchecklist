@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuetify from './Vuetify'
+import Speak from './Speak';
 
 // This way of loading corresponds to "window not defined" errors
 let VueSelect = null
@@ -9,5 +10,6 @@ if (process.browser) {
 }
 
 export default {
-  Vuetify
+  Vuetify,
+  Speak
 }
