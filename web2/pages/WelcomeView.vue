@@ -1,16 +1,11 @@
 <template>
   <v-layout column justify-center align-center>
-    <v-toolbar color="blue" app absolute clipped-left>
-      <span class="title ml-3 mr-5">ET&nbsp;<span class="text">Disaster Checklist</span></span>
-    </v-toolbar>
+    <Speak></Speak>
     <v-flex xs12 sm8 md6>
       <div class="text-xs-center background-map">
         <img src="/static/map.jpg" alt="Map" class="mb-5"/>
       </div>
       <v-card flat color="transparent">
-        <v-card-text>
-          <p>Welcome to the Disaster Checklist</p>
-        </v-card-text>
         <v-layout row wrap class="buttons">
           <v-flex xs6 sm6 md6>
             <div class="content create">
@@ -33,6 +28,9 @@
             </div>
           </v-flex>
         </v-layout>
+        <!--<v-card-actions>-->
+          <!--<v-btn color="primary" flat router to="/inspire">Continue</v-btn>-->
+        <!--</v-card-actions>-->
       </v-card>
     </v-flex>
   </v-layout>
@@ -80,40 +78,8 @@
 </style>
 
 <script>
-
-  export default{
-    data(){
-      return {
-
-      }
-    },
-    methods: {
-      startButton(event) {
-        let finalTranscript = '';
-       let recognition = new webkitSpeechRecognition();
-        recognition.onstart = function() {
-          console.log('start')
-        };
-        recognition.onresult = function(event) {
-          console.log('result', event)
-          var interim_transcript = '';
-
-          for (var i = event.resultIndex; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-              finalTranscript += event.results[i][0].transcript;
-            } else {
-              interim_transcript += event.results[i][0].transcript;
-            }
-          }
-         console.log(finalTranscript);
-
-        };
-        recognition.onerror = function(event) { console.log('error') };
-        recognition.onend = function() { console.log('end')};
-        console.log('test')
-
-        recognition.start();
-      }
-    }
+  import Speak from "../components/Speak";
+  export default {
+    components: {Speak}
   }
 </script>
