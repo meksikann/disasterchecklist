@@ -75,7 +75,7 @@
 
           if (list && list.length) {
             list.forEach((ls, index) => {
-              msg += `Number ${index + 1}.List name: ${ls.title}.`;
+              msg += `Number ${index + 1}. ${ls.title}.`;
               let items = ls.items.join('.');
               msg += `Stuff to take with you: ${items}.`;
             });
