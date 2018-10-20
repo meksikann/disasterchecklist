@@ -18,23 +18,31 @@ const sendNotification = async (subscriber, data) => {
 
 exports.sendNotification = sendNotification;
 
+exports.exist = async (req, res) => {
+    res.status(status.OK).json('Use method POST for create subscriptions');
+};
+
 exports.subscribe = async (req, res) => {
+    console.log('subscribe');
     try {
         const subscriber = JSON.stringify(req.body);
         const exist = await existSubscriber(subscriber);
+        console.log('subscribe 1');
         if (!exist) {
+            console.log('subscribe 2');
             const create = await createSubscriber(subscriber);
             res.status(status.CREATED).json(create);
             const msg = {
               title: 'Test notify',
               body: 'You success subscribe to notification',
             };
-            await sendNotification(subscriber, msg);
+            console.log('subscribe 3');
+            return await sendNotification(req.body, msg);
         }
-        res.status(status.NOT_IMPLEMENTED).json(exist);
+        return res.status(status.NOT_IMPLEMENTED).json(exist);
     }catch (e) {
-     console.error(e);
-     res.sendStatus(status.INTERNAL_SERVER_ERROR);
+     console.log(e);
+     res.sendStatus(status.NOT_IMPLEMENTED);
     }
 };
 
