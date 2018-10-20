@@ -1,6 +1,5 @@
 <template>
   <v-layout column justify-center align-center>
-    <!--<Speak></Speak>-->
     <v-flex xs12>
       <div class="content">
         <div class="background">
