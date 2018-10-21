@@ -244,11 +244,14 @@
               </v-btn>
             </div>
           </v-flex>
-          <v-flex xs12 sm12 md12>
+
+          <v-flex xs12>
             <div class="content">
               <v-btn color="rgba(225,225,225, .2)" large block router to="/disasters">
-                <div>
-                  <v-icon large>warning</v-icon>
+                <div class="background bg-orange">
+                  <v-icon large color="white">warning</v-icon>
+                </div>
+                <div class="icon-caption" style="font-size: 15px;">
                   Report another disaster
                 </div>
               </v-btn>
@@ -278,6 +281,7 @@
     height: 85px;
     max-width: 85px;
     position: absolute;
+
     left: 0;
     display: flex;
     justify-content: center;
