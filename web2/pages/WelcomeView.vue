@@ -5,7 +5,7 @@
         <v-layout row wrap justify-space-between class="buttons">
           <v-flex xs12>
             <div class="content create">
-              <v-btn color="rgba(225,225,225, .7)" large block router to="/disasters">
+              <v-btn color="rgba(225,225,225, .2)" large block router to="/disasters">
                 <div class="background bg-black">
                   <img src="/static/fire.png" alt="">
                 </div>
@@ -17,7 +17,7 @@
           </v-flex>
           <v-flex xs12>
             <div class="content">
-              <v-btn color="rgba(225,225,225, .7)" large block router to="/checklist">
+              <v-btn color="rgba(225,225,225, .2)" large block router to="/checklist">
                 <div class="background bg-blue">
                   <svg version="1.1" id="water" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      viewBox="0 0 170 70" style="enable-background:new 0 0 170 70;" xml:space="preserve">
@@ -36,7 +36,7 @@
           </v-flex>
           <v-flex xs12>
             <div class="content">
-              <v-btn color="rgba(225,225,225, .7)" large block router to="/checklist">
+              <v-btn color="rgba(225,225,225, .2)" large block router to="/checklist">
                 <div class="background bg-cyan">
                   <img id="hurricane" src="/static/hurricane.svg" alt="">
                 </div>
@@ -48,7 +48,7 @@
           </v-flex>
           <v-flex xs12>
             <div class="content">
-              <v-btn color="rgba(225,225,225, .7)" large block router to="/checklist">
+              <v-btn color="rgba(225,225,225, .2)" large block router to="/checklist">
                 <div class="background bg-orange">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="volcano" x="0px" y="0px" viewBox="0 0 511.985 511.985" style="enable-background:new 0 0 511.985 511.985;" xml:space="preserve">
                     <path style="fill:#9B5C5C;" d="M445.201,492.047c4.172,10.969-2.03,19.938-13.764,19.938H80.542  c-11.734,0-17.921-8.969-13.765-19.938l110.778-292.053c4.156-10.968,17.031-18.374,28.608-16.437l28.78,4.796  c11.578,1.922,30.515,1.922,42.093,0l28.78-4.796c11.578-1.938,24.452,5.468,28.608,16.437L445.201,492.047z"/>
@@ -71,7 +71,7 @@
           </v-flex>
           <v-flex xs12 sm12 md12>
             <div class="content">
-              <v-btn color="rgba(225,225,225, .7)" large block router to="/disasters">
+              <v-btn color="rgba(225,225,225, .2)" large block router to="/disasters">
                 <div>
                   <v-icon large>warning</v-icon>
                   Report another disaster
@@ -100,7 +100,7 @@
   }
 
   .background {
-    background: rgba(225,225,225, 1);
+    background: #fff;
   }
 
   .icon-caption {
@@ -153,7 +153,7 @@
   .buttons .v-btn {
     border-radius: 30px 0 0 30px;
     height: 85px;
-    font-size: 15px;
+    font-size: 20px;
     color: #333;
     padding: 0;
     text-align: left;
