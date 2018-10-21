@@ -204,7 +204,7 @@
           </v-flex>
           <v-flex xs12>
             <div class="content">
-              <v-btn color="rgba(225,225,225, .2)" large block router to="/checklist">
+              <v-btn color="rgba(225,225,225, .2)" large block router to="/clear">
                 <div class="background bg-cyan">
                   <!--<img id="hurricane" src="/static/hurricane.svg" alt="">-->
                   <svg class="icon">

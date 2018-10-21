@@ -28,6 +28,8 @@ export function createRouter () {
         route('/disaster-fire', 'Fires'),
         route('/disaster-flood', 'Flood'),
         route('/map', 'Map'),
+        route('/clear', 'Clear'),
+        route('/checklist', 'Checklist'),
         route('/checklist/', 'ChecklistEdit', 'Create checklist'),
         route('/checklists', 'Checklists', 'See checklists'),
         route('/checklist/:checklistId', 'Checklist', 'See checklist'),
