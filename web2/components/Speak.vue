@@ -86,7 +86,7 @@
 
           if (list && list.length) {
             list.forEach((ls, index) => {
-              msg += `Number ${index + 1}.List name: ${ls.title}.`;
+              msg += `Number ${index + 1}. ${ls.title}.`;
               let items = ls.items.join('.');
               msg += `Stuff to take with you: ${items}.`;
             });
@@ -116,7 +116,7 @@
 
           console.log(takenItems);
           localStorage.setItem(`taken_items`, JSON.stringify(takenItems));
-
+          document.dispatchEvent(new CustomEvent("shouldUpdateTaken"));
           return msg += `. Unchecked. Don't forget to stay calm my friend`;
         }
 
@@ -150,7 +150,7 @@
           });
 
           localStorage.setItem(`taken_items`, JSON.stringify(takenItems));
-
+          document.dispatchEvent(new CustomEvent("shouldUpdateTaken"));
           return msg += `. Marked my friend`;
         }
 
@@ -200,7 +200,7 @@
           let msg = 'Done! All taken list is empty now.';
 
           localStorage.setItem(`taken_items`, JSON.stringify([]));
-
+          document.dispatchEvent(new CustomEvent("shouldUpdateTaken"));
           return msg;
         }
 
@@ -249,7 +249,7 @@
           });
           msg += ' added to list';
           localStorage.setItem(`taken_items`, JSON.stringify(takenItems))
-
+          document.dispatchEvent(new CustomEvent("shouldUpdateTaken"));
           return msg;
         }
 

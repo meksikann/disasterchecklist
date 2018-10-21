@@ -1,6 +1,7 @@
 {
   "checklists": [
     {
+      "id": -1,
       "title": "Wildfires",
       "type": "fire",
       "items": [
@@ -9,6 +10,7 @@
       ]
     },
     {
+      "id": -2,
       "title": "Earthquakes",
       "type": "earthquake",
       "items": [
@@ -17,6 +19,7 @@
       ]
     },
     {
+      "id": -3,
       "title": "Floods",
       "type": "flood",
       "items": [
@@ -25,6 +28,7 @@
       ]
     },
     {
+      "id": -4,
       "title": "Tsunami",
       "type": "flood",
       "items": [

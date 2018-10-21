@@ -1,5 +1,6 @@
 <template>
     <v-list class="checklists">
+        <checklist-tile :checklist="checklist" v-for="checklist in predefinedChecklists" :key="checklist.id" :locked="true"/>
         <checklist-tile :checklist="checklist" v-for="checklist in checklists" :key="checklist.id" @delete="onDelete" />
         <v-list-tile>
             <v-btn class="add-btn" to="/checklist">
@@ -15,13 +16,17 @@
     import {
         getChecklists
     } from "../localStorage/localStorage";
+    import {
+        checklists as predefinedChecklists
+    } from '../localStorage/predefined';
     export default {
         components: {
             "checklist-tile": ChecklistTile
         },
         data() {
             return {
-                checklists: getChecklists()
+                checklists: getChecklists(),
+                predefinedChecklists,
             };
         },
         methods: {

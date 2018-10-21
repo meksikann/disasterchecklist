@@ -3,14 +3,14 @@ const CHECKLISTS_STORAGE_KEY = "checklists";
 const TAKEN_ITEMS_STORAGE_KEY = "taken_items";
 
 try {
-  let data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY));
+  let data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY)) || [];
   data = data.filter(checklist => checklist.title && checklist.items && checklist.id);
   localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
 } catch (err) {
   console.error(err);
 }
 try {
-  let data = JSON.parse(localStorage.getItem(TAKEN_ITEMS_STORAGE_KEY));
+  let data = JSON.parse(localStorage.getItem(TAKEN_ITEMS_STORAGE_KEY)) || [];
   data = data.filter(takenItem => typeof takenItem === 'string');
   localStorage.setItem(TAKEN_ITEMS_STORAGE_KEY, JSON.stringify(data));
 } catch (err) {
@@ -18,21 +18,10 @@ try {
 }
 
 export function addChecklist(checklist) {
-  let data;
-  try {
-    data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY));
-  } catch (err) {
-    data = [];
-  }
+  const data = getChecklists();
   const checklistToSave = {
     ...checklist,
   };
-  let newId;
-  try {
-    newId = parseInt(data[data.length - 1].id, 10) + 1;
-  } catch(err) {
-    newId = 1;
-  }
   checklistToSave.id = data.length > 0 ? parseInt(data[data.length - 1].id, 10) + 1 : 1;
   data.push(checklistToSave);
   localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
@@ -40,12 +29,7 @@ export function addChecklist(checklist) {
 }
 
 export function addChecklistItem(checklistId, checklistItem) {
-  let data;
-  try {
-    data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY))
-  } catch (err) {
-    data = []
-  }
+  let data = getChecklists();
   const checklist = data.find(checklist => checklist.id === checklistId) || {
     title: 'Empty',
     items: [],
@@ -64,38 +48,29 @@ export function addTakenItem(takenItem) {
 }
 
 export function deleteChecklist(checklistId) {
-  let data;
-  try {
-    data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY))
-  } catch (err) {
-    data = []
-  }
+  let data = getChecklists();
   data = data.filter(checklist => checklist.id !== checklistId);
   localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
 }
 
 export function getChecklist(checklistId) {
-  let data;
-  try {
-    data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY))
-  } catch (err) {
-    data = []
-  }
+  const data = getChecklists();
   return data.find(checklist => checklist.id === checklistId);
 }
 
 export function getChecklists(){
   try {
-    return JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY));
+    const data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY));
+    if (!data.push) return [];
+    return data;
   } catch (err) {
     return [];
   }
 }
 
 export function getNextId() {
-  let data;
   try {
-    data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY));
+    const data = getChecklists();
     return data.length + 1;
   } catch (err) {
     return 1;
@@ -127,6 +102,20 @@ export function modifyChecklist(checklist) {
 
 }
 
+
+export function removeChecklistItem(checklistId, checklistItem) {
+  let data = getChecklists();
+  const checklist = data.find(checklist => checklist.id === checklistId) || {
+    title: 'Empty',
+    items: [],
+    id: getNextId(),
+  };
+  checklist.items.push(checklistItem);
+  data = data.filter(checklist => checklist.id !== checklistId);
+  data.push(checklist);
+  localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
+}
+
 export function removeTakenItem(notTakenItem) {
   let takenItems = getTakenItems();
   takenItems = takenItems.filter(takenItem => takenItem !== notTakenItem);
@@ -134,12 +123,7 @@ export function removeTakenItem(notTakenItem) {
 }
 
 export function setActiveChecklist(checklistId) {
-  let data;
-  try {
-    data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY))
-  } catch (err) {
-    data = []
-  }
+  const data = getChecklists();
   const checklist = data.find(checklist => checklist.id === checklistId);
   localStorage.setItem(ACTIVE_STORAGE_KEY, JSON.stringify(checklist));
 }
