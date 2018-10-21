@@ -105,7 +105,7 @@
 
           console.log(takenItems);
           localStorage.setItem(`taken_items`, JSON.stringify(takenItems));
-
+          document.dispatchEvent(new CustomEvent("shouldUpdateTaken"));
           return msg += `. Unchecked. Don't forget to stay calm my friend`;
         }
 
@@ -139,7 +139,7 @@
           });
 
           localStorage.setItem(`taken_items`, JSON.stringify(takenItems));
-
+          document.dispatchEvent(new CustomEvent("shouldUpdateTaken"));
           return msg += `. Marked my friend`;
         }
 
@@ -189,7 +189,7 @@
           let msg = 'Done! All taken list is empty now.';
 
           localStorage.setItem(`taken_items`, JSON.stringify([]));
-
+          document.dispatchEvent(new CustomEvent("shouldUpdateTaken"));
           return msg;
         }
 
@@ -238,7 +238,7 @@
           });
           msg += ' added to list';
           localStorage.setItem(`taken_items`, JSON.stringify(takenItems))
-
+          document.dispatchEvent(new CustomEvent("shouldUpdateTaken"));
           return msg;
         }
 

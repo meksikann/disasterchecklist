@@ -26,6 +26,11 @@
                 }
             },
         },
+        mounted() {
+            document.addEventListener("shouldUpdateTaken", () => {
+                this.taken = isItemTaken(this.title);
+            });
+        },
         props: {
             checklistId: Number,
             title: String,
