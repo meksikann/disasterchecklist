@@ -255,7 +255,10 @@
           msg += ' added to list';
 
           console.log(active);
-          localStorage.setItem(`active`, JSON.stringify(active));
+          if(active){
+            localStorage.setItem(`active`, JSON.stringify(active));
+            document.dispatchEvent(new CustomEvent("shouldUpdateActive"));
+          }
           localStorage.setItem(`taken_items`, JSON.stringify(takenItems));
           document.dispatchEvent(new CustomEvent("shouldUpdateTaken"));
           return msg;

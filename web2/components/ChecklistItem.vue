@@ -13,8 +13,11 @@
     export default {
         data: function() {
             return {
-                taken: isItemTaken(this.title),
+                taken: false,
             }
+        },
+        destroyed() {
+            document.removeEventListener("shouldUpdateTaken", this.updateTaken);
         },
         methods: {
             toggleTaken() {
@@ -27,13 +30,16 @@
             },
         },
         mounted() {
-            document.addEventListener("shouldUpdateTaken", () => {
-                this.taken = isItemTaken(this.title);
-            });
+            this.taken = isItemTaken(this.title);
+            document.addEventListener("shouldUpdateTaken", this.updateTaken);
         },
         props: {
             checklistId: Number,
             title: String,
+        },
+        updateTaken() {
+            console.info('should update taken...');
+            this.taken = isItemTaken(this.title);
         },
     }
 </script>

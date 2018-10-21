@@ -1,12 +1,22 @@
 <template>
     <div class="checklist-item">
         <input class="item-title" @change="onTitleChange" :value="title" />
+        <v-btn @click.stop.prevent="deleteItem" class="delete-btn">
+            <v-icon>delete</v-icon>
+        </v-btn>
     </div>
 </template>
 
 <script>
+    import {
+        removeChecklistItem
+    } from '../localStorage/localStorage';
     export default {
         methods: {
+            deleteItem() {
+                removeChecklistItem(this.checklistId, this.title);
+                this.$emit('delete', this.title);
+            },
             onTitleChange(event) {
                 this.$emit('titleChange', event);
             }

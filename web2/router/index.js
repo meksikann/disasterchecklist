@@ -28,13 +28,13 @@ export function createRouter () {
         route('/disaster-fire', 'Fires'),
         route('/disaster-flood', 'Flood'),
         route('/map', 'Map'),
-        route('/checklist', 'Checklist'),
+        route('/checklist/', 'ChecklistEdit', 'Create checklist'),
         route('/checklists', 'Checklists'),
         route('/checklist/:checklistId', 'Checklist'),
-        route('/checklist/:checklistId/edit', 'ChecklistEdit'),
+        route('/checklist/:checklistId/edit', 'ChecklistEdit', 'Edit checklist'),
         // Global redirect for 404
         { path: '*', redirect: '/' }
-      ]
+      ],
     });
 
     // Send a pageview to Google Analytics
