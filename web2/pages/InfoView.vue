@@ -36,11 +36,10 @@
 
 <script>
   import { getAllChecklist } from "../localStorage/localStorage";
-  import draggable from 'vuedraggable';
   import VListTileAction from "vuetify/lib/components/VList/VListTileAction";
   export default {
     name: "InfoView",
-    components: {VListTileAction, draggable },
+    components: {VListTileAction },
     data () {
       return {
         items: [
