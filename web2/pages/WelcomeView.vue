@@ -274,7 +274,7 @@
       </v-card>
       <v-card v-if="showModal" color="#98d0fa" class="modal">
         <p>You have successfully pushed a notification for fire disaster</p>
-        <v-btn router to="/checklist" flat color="white">Go to checklist</v-btn>
+        <v-btn router to="/checklist/-1" flat color="white">Go to checklist</v-btn>
         <v-btn @click="hideModal" flat color="white">Dismiss</v-btn>
       </v-card>
     </v-flex>
