@@ -35,6 +35,16 @@
         "Water",
         "Food"
       ]
+    },
+    {
+      "id": -5,
+      "title": "My list",
+      "type": "my list",
+      "items": [
+        "paper",
+        "water",
+        "children"
+      ]
     }
   ],
   "items": [
