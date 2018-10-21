@@ -2,9 +2,7 @@
   <div>
     <v-layout row style="min-height: 100vh">
       <v-flex xs1>
-        <draggable v-model="useZone">
-          use
-        </draggable>
+        use
       </v-flex>
       <v-flex xs10>
         <v-list two-line>
@@ -15,13 +13,12 @@
               ripple
               @click="cardOnClickHandler(index)"
             >
-                <draggable v-model="items[index]" :key="index">
+
               <v-list-tile-content>
                 <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                 <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
                 <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>
               </v-list-tile-content>
-                </draggable>
             </v-list-tile>
             <v-divider
               v-if="index + 1 < items.length"
@@ -31,7 +28,7 @@
         </v-list>
       </v-flex>
       <v-flex xs1>
-        <draggable v-model="editZone"></draggable>
+        edit
       </v-flex>
     </v-layout>
   </div>
