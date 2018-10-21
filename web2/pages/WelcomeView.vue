@@ -247,6 +247,19 @@
 
           <v-flex xs12>
             <div class="content">
+              <v-btn color="rgba(225,225,225, .2)" large block router to="/checklists">
+                <div class="background bg-orange">
+                  <v-icon large color="white">list</v-icon>
+                </div>
+                <div class="icon-caption">
+                  Checklists
+                </div>
+              </v-btn>
+            </div>
+          </v-flex>
+
+          <v-flex xs12>
+            <div class="content">
               <v-btn color="rgba(225,225,225, .2)" large block router to="/disasters">
                 <div class="background bg-orange">
                   <v-icon large color="white">warning</v-icon>
