@@ -69,10 +69,10 @@
           ]
         };
 
-        let takenItemsDump = ['Food'];;
+        let takenItemsDump = ['water'];;
         // localStorage.setItem(`checklists`, JSON.stringify(checklist));
         // localStorage.setItem(`active`, JSON.stringify(activeDump));
-        // localStorage.setItem(`taken_items`, JSON.stringify(takenItemsDump))
+        localStorage.setItem(`taken_items`, JSON.stringify(takenItemsDump))
         //*************************************************************************
         //*********************************************************************
 
@@ -155,6 +155,10 @@
         }
 
         function remindUncheckedItems() {
+
+          // todo remove mosk
+          return "You forgot to take paper and children with you";
+
           let active = JSON.parse(localStorage.getItem('active'));
           let takenItems = JSON.parse(localStorage.getItem('taken_items'));
           console.log(takenItems);
