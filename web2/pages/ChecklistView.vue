@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-        <input type="text" v-model="title" />
+        <input type="text" @change="onTitleChange" :value="title" />
         <checklist-item :checklistId="checklist.id" v-for="item in items" :key="`${item}`" :title="item" />
-        <add-checklist-item :checklistId="checklist.id" @save="onAdd" v-if="checklist" />
+        <add-checklist-item :checklistId="checklist.id" :items="items" @save="onAdd" v-if="checklist" />
     </div>
 </template>
 
@@ -11,6 +11,7 @@
         addChecklist,
         getChecklist,
         getNextId,
+        modifyChecklist,
         setActiveChecklist
     } from '../localStorage/localStorage.js';
     import AddChecklistItem from '../components/AddChecklistItem';
@@ -32,8 +33,7 @@
             let checklistId;
             try {
                 checklistId = parseInt(this.$route.params.checklistId, 10);
-            } catch(err) {
-            }
+            } catch (err) {}
             return {
                 checklist: {
                     id: checklistId,
@@ -44,6 +44,9 @@
         },
         methods: {
             onAdd: function(checklistItem) {
+                if(this.items.includes(checklistItem)) {
+                    return;
+                }
                 this.checklist = {
                     ...this.checklist,
                     items: [
@@ -51,6 +54,14 @@
                         checklistItem,
                     ],
                 };
+                modifyChecklist(this.checklist);
+            },
+            onTitleChange(event) {
+                this.checklist = {
+                    ...this.checklist,
+                    title: event.target.value,
+                };
+                modifyChecklist(this.checklist);
             },
         },
         mounted() {
@@ -63,7 +74,8 @@
                     items: [],
                     title: 'Empty',
                 };
-                this.$router.push(`/checklist/${this.checklist.id}`);
+                addChecklist(this.checklist);
+                this.$router.replace(`/checklist/${this.checklist.id}`);
             }
             setActiveChecklist(this.checklist.id);
         },
@@ -80,6 +92,7 @@
         font-size: 3rem;
         font-weight: bold;
         margin: 1rem auto;
+        max-width: 100%;
         text-align: center;
     }
 </style>

@@ -29,7 +29,7 @@ export function createRouter () {
         route('/disaster-flood', 'Flood'),
         route('/map', 'Map'),
         route('/checklist', 'Checklist'),
-        route('/view', 'Info'),
+        route('/checklists', 'Checklists'),
         route('/checklist/:checklistId', 'Checklist'),
         // Global redirect for 404
         { path: '*', redirect: '/' }
