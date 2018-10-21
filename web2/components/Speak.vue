@@ -238,6 +238,7 @@
           let msg = '';
           let entities = data.entities;
           let takenItems = JSON.parse(localStorage.getItem('taken_items'));
+          let active = JSON.parse(localStorage.getItem('active'));
 
           if (!takenItems) {
             takenItems = [];
@@ -245,10 +246,17 @@
 
           entities.forEach(ent => {
             takenItems.push(ent.entity);
+            console.log('here');
+            if(active.items.indexOf(ent.entity) < 0){
+              active.items.push(ent.entity);
+            }
             msg += ` ${ent.entity},`;
           });
           msg += ' added to list';
-          localStorage.setItem(`taken_items`, JSON.stringify(takenItems))
+
+          console.log(active);
+          localStorage.setItem(`active`, JSON.stringify(active));
+          localStorage.setItem(`taken_items`, JSON.stringify(takenItems));
           document.dispatchEvent(new CustomEvent("shouldUpdateTaken"));
           return msg;
         }
