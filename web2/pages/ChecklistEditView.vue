@@ -1,7 +1,8 @@
 <template>
     <div class="container">
         <input type="text" @change="onTitleChange" :value="title" />
-        <checklist-item :checklistId="checklist.id" v-for="item in items" :key="`${item}`" :title="item" />
+        <checklist-item-edit :checklistId="checklist.id" v-for="item in items" :key="`${item}`" :title="item" @titleChange="onItemChange"/>
+        <add-checklist-item :checklistId="checklist.id" :items="items" @save="onAdd" v-if="checklist" />
     </div>
 </template>
 
@@ -13,15 +14,12 @@
         modifyChecklist,
         setActiveChecklist
     } from '../localStorage/localStorage.js';
-    import {
-        checklists as predefinedChecklists
-    } from '../localStorage/predefined';
     import AddChecklistItem from '../components/AddChecklistItem';
-    import ChecklistItem from '../components/ChecklistItem';
+    import ChecklistItemEdit from '../components/ChecklistItemEdit';
     export default {
         components: {
             'add-checklist-item': AddChecklistItem,
-            'checklist-item': ChecklistItem,
+            'checklist-item-edit': ChecklistItemEdit,
         },
         computed: {
             items() {
@@ -58,6 +56,26 @@
                 };
                 modifyChecklist(this.checklist);
             },
+            onItemChange(event) {
+                const oldItem = this.items.find(item => item === event.target.defaultValue);
+                if(!oldItem) {
+                    this.checklist = {
+                        ...this.checklist,
+                        items: [
+                            ...this.items,
+                            event.target.value,
+                        ],
+                    };
+                } else {
+                    const newItems = [...this.items];
+                    newItems[newItems.indexOf(event.target.defaultValue)] = event.target.value;
+                    this.checklist = {
+                        ...this.checklist,
+                        items: newItems,
+                    };
+                }
+                modifyChecklist(this.checklist);
+            },
             onTitleChange(event) {
                 this.checklist = {
                     ...this.checklist,
@@ -68,11 +86,7 @@
         },
         mounted() {
             if (this.checklist.id) {
-                if (this.checklist.id < 0) {
-                    this.checklist = predefinedChecklists.find(checklistItem => checklistItem.id === this.checklist.id);
-                } else {
-                    this.checklist = getChecklist(this.checklist.id);
-                }
+                this.checklist = getChecklist(this.checklist.id);
             }
             if (!this.checklist || !this.checklist.id) {
                 this.checklist = {

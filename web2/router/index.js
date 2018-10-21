@@ -31,6 +31,7 @@ export function createRouter () {
         route('/checklist', 'Checklist'),
         route('/checklists', 'Checklists'),
         route('/checklist/:checklistId', 'Checklist'),
+        route('/checklist/:checklistId/edit', 'ChecklistEdit'),
         // Global redirect for 404
         { path: '*', redirect: '/' }
       ]

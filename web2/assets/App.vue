@@ -1,43 +1,44 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          router
-          :to="item.to"
-          :key="i"
-          v-for="(item, i) in items"
-          exact
-        >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar fixed class="main">
-      <v-toolbar-side-icon dark @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-    </v-toolbar>
-    <v-toolbar dark fixed app :clipped-left="clipped" class="main">
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
+  <v-app light>
+    <!--<v-navigation-drawer-->
+      <!--:mini-variant="miniVariant"-->
+      <!--:clipped="clipped"-->
+      <!--v-model="drawer"-->
+      <!--fixed-->
+      <!--app-->
+    <!--&gt;-->
+      <!--<v-list>-->
+        <!--<v-list-tile-->
+          <!--router-->
+          <!--:to="item.to"-->
+          <!--:key="i"-->
+          <!--v-for="(item, i) in items"-->
+          <!--exact-->
+        <!--&gt;-->
+          <!--<v-list-tile-action>-->
+            <!--<v-icon v-html="item.icon"></v-icon>-->
+          <!--</v-list-tile-action>-->
+          <!--<v-list-tile-content>-->
+            <!--<v-list-tile-title v-text="item.title"></v-list-tile-title>-->
+          <!--</v-list-tile-content>-->
+        <!--</v-list-tile>-->
+      <!--</v-list>-->
+    <!--</v-navigation-drawer>-->
+    <!--<v-toolbar fixed class="main">-->
+      <!--<v-toolbar-side-icon dark @click.stop="drawer = !drawer"></v-toolbar-side-icon>-->
+    <!--</v-toolbar>-->
+    <!--<v-toolbar dark fixed app :clipped-left="clipped" class="main">-->
+      <!--<v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>-->
+      <!--<v-toolbar-title v-text="title"></v-toolbar-title>-->
+      <!--<v-spacer></v-spacer>-->
+    <!--</v-toolbar>-->
+
+    <speak></speak>
     <v-content :class="{ 'disasters': $route.path == '/disasters' }">
       <v-container fluid>
         <v-slide-y-transition mode="out-in">
           <router-view></router-view>
         </v-slide-y-transition>
-        <speak></speak>
       </v-container>
     </v-content>
   </v-app>
@@ -76,8 +77,7 @@
 </script>
 
 <style scoped>
-  .main {
-    background: #424242;
-    color: #fff;
+  .application {
+    background: #9bd0fa;
   }
 </style>

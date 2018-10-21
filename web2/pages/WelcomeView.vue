@@ -1,15 +1,12 @@
 <template>
   <v-layout column justify-center align-center class="main-layout">
     <v-flex xs12 sm8 md6 class="center">
-      <div class="text-xs-center background-map">
-        <img src="/static/map.jpg" alt="Map" class="mb-5"/>
-      </div>
       <v-card flat color="transparent">
         <v-layout row wrap justify-space-between class="buttons">
-          <v-flex xs6 sm6 md6>
+          <v-flex xs12>
             <div class="content create">
-              <v-btn color="rgba(0,0,0, .7)" large block router to="/disasters">
-                <div class="background">
+              <v-btn color="rgba(225,225,225, .7)" large block router to="/disasters">
+                <div class="background bg-black">
                   <img src="/static/fire.png" alt="">
                 </div>
                 <div class="icon-caption">
@@ -18,10 +15,10 @@
               </v-btn>
             </div>
           </v-flex>
-          <v-flex xs6 sm6 md6>
+          <v-flex xs12>
             <div class="content">
-              <v-btn color="rgba(45, 137, 239, .7)" large block router to="/checklist">
-                <div class="background">
+              <v-btn color="rgba(225,225,225, .7)" large block router to="/checklist">
+                <div class="background bg-blue">
                   <svg version="1.1" id="water" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      viewBox="0 0 170 70" style="enable-background:new 0 0 170 70;" xml:space="preserve">
                     <g>
@@ -37,10 +34,10 @@
               </v-btn>
             </div>
           </v-flex>
-          <v-flex xs6 sm6 md6>
+          <v-flex xs12>
             <div class="content">
-              <v-btn color="rgba(80, 175, 197, .7)" large block router to="/checklist">
-                <div class="background">
+              <v-btn color="rgba(225,225,225, .7)" large block router to="/checklist">
+                <div class="background bg-cyan">
                   <img id="hurricane" src="/static/hurricane.svg" alt="">
                 </div>
                 <div class="icon-caption">
@@ -49,10 +46,10 @@
               </v-btn>
             </div>
           </v-flex>
-          <v-flex xs6 sm6 md6>
+          <v-flex xs12>
             <div class="content">
-              <v-btn color="rgba(238, 118, 8, .7)" large block router to="/checklist">
-                <div class="background">
+              <v-btn color="rgba(225,225,225, .7)" large block router to="/checklist">
+                <div class="background bg-orange">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="volcano" x="0px" y="0px" viewBox="0 0 511.985 511.985" style="enable-background:new 0 0 511.985 511.985;" xml:space="preserve">
                     <path style="fill:#9B5C5C;" d="M445.201,492.047c4.172,10.969-2.03,19.938-13.764,19.938H80.542  c-11.734,0-17.921-8.969-13.765-19.938l110.778-292.053c4.156-10.968,17.031-18.374,28.608-16.437l28.78,4.796  c11.578,1.922,30.515,1.922,42.093,0l28.78-4.796c11.578-1.938,24.452,5.468,28.608,16.437L445.201,492.047z"/>
                     <g>
@@ -74,7 +71,7 @@
           </v-flex>
           <v-flex xs12 sm12 md12>
             <div class="content">
-              <v-btn color="rgba(187, 29, 71, .7)" large block router to="/disasters">
+              <v-btn color="rgba(225,225,225, .7)" large block router to="/disasters">
                 <div>
                   <v-icon large>warning</v-icon>
                   Report another disaster
@@ -90,28 +87,29 @@
 </template>
 <style scoped>
   .background {
-    width: 100%;
-    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 85px;
+    height: 85px;
+    max-width: 85px;
+    position: absolute;
+    left: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .background {
+    background: rgba(225,225,225, 1);
   }
 
   .icon-caption {
-    position: absolute;
-    top: 50%
-  }
-
-  .icon-caption.black-font {
     color: #444;
+    text-align: left;
+    width: 100%;
+    padding-left: 30%;
   }
 
-  .background #water {
-    width: 170px;
-    height: 124px;
-  }
-
-  .background #volcano {
-    width: 170px;
-    height: 102px;
-  }
 
   .background img {
     max-width: 100%;
@@ -120,7 +118,6 @@
   }
 
   .main-layout {
-    height: calc(100vh - 132px);
   }
 
   .center {
@@ -134,7 +131,7 @@
   }
 
   .content {
-    height: 120px;
+    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -154,39 +151,52 @@
   }
 
   .buttons .v-btn {
+    border-radius: 30px 0 0 30px;
+    height: 85px;
     font-size: 15px;
-    height: 100%;
-    color: #fff;
+    color: #333;
     padding: 0;
-  }
-
-  .buttons .v-btn div {
-    max-height: 100%;
-    max-width: 100%;
-    width: 100%;
-    height: 100%;
+    text-align: left;
   }
 
   .buttons .v-btn i {
     display: block;
   }
 
-  .background-map {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
+  .background #water {
+    width: 170px;
+    height: 124px;
   }
 
-  .background-map::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+  .background #volcano {
+    width: 80px;
+    height: 75px;
+  }
+
+  #hurricane {
+    max-width: 70px;
+    max-height: 100px;
+    animation: shakeAction linear infinite 5s;
+  }
+  #volcano-smoke-1 {
+    animation: shake linear infinite 5s;
+  }
+  #volcano-smoke-2 {
+    animation: shake linear infinite 5s;
+  }
+  #volcano-smoke-3 {
+    animation: shake linear infinite 5s;
+  }
+
+  #water g {
+    animation: shake linear infinite 8s;
+  }
+
+  #waveShape {
+    animation: waveAction linear infinite .5s;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, .3);
+    fill: #04ACFF;
   }
 
   @keyframes grow {
@@ -245,32 +255,6 @@
     100% {
       transform: translate(0, 0);
     }
-  }
-
-  #hurricane {
-    max-width: 100px;
-    max-height: 100px;
-    animation: shakeAction linear infinite 5s;
-  }
-  #volcano-smoke-1 {
-    animation: shake linear infinite 5s;
-  }
-  #volcano-smoke-2 {
-    animation: shake linear infinite 5s;
-  }
-  #volcano-smoke-3 {
-    animation: shake linear infinite 5s;
-  }
-
-  #water g {
-    animation: shake linear infinite 8s;
-  }
-
-  #waveShape {
-    animation: waveAction linear infinite .5s;
-    width: 100%;
-    height: 100%;
-    fill: #04ACFF;
   }
 </style>
 
