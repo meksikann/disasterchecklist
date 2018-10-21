@@ -237,8 +237,23 @@
         function addItemToList(data) {
           let msg = '';
           let entities = data.entities;
-          let takenItems = JSON.parse(localStorage.getItem('taken_items'));
-          let active = JSON.parse(localStorage.getItem('active'));
+          let ls = localStorage.getItem('taken_items');
+          let takenItems =[];
+          if(ls) {
+            takenItems = JSON.parse(ls);
+          }
+          // let takenItems = JSON.parse(localStorage.getItem('taken_items'));
+          // let active = JSON.parse(localStorage.getItem('active'));
+          let active = {
+            "id": -5,
+            "title": "My list",
+            "type": "my list",
+            "items": [
+              "paper",
+              "water",
+              "children"
+            ]
+          };
 
           if (!takenItems) {
             takenItems = [];
@@ -255,7 +270,10 @@
           msg += ' added to list';
 
           console.log(active);
-          localStorage.setItem(`active`, JSON.stringify(active));
+          if(active){
+            localStorage.setItem(`active`, JSON.stringify(active));
+            document.dispatchEvent(new CustomEvent("shouldUpdateActive"));
+          }
           localStorage.setItem(`taken_items`, JSON.stringify(takenItems));
           document.dispatchEvent(new CustomEvent("shouldUpdateTaken"));
           return msg;

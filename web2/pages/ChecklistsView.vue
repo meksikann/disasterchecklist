@@ -2,7 +2,7 @@
     <v-list class="checklists">
         <checklist-tile :checklist="checklist" v-for="checklist in predefinedChecklists" :key="checklist.id" :locked="true"/>
         <checklist-tile :checklist="checklist" v-for="checklist in checklists" :key="checklist.id" @delete="onDelete" />
-        <v-list-tile>
+        <v-list-tile :key="0">
             <v-btn class="add-btn" to="/checklist">
                 <v-icon>add_circle</v-icon>Add
                 <v-icon>add_circle</v-icon>
@@ -25,7 +25,7 @@
         },
         data() {
             return {
-                checklists: getChecklists(),
+                checklists: [],
                 predefinedChecklists,
             };
         },
@@ -33,6 +33,9 @@
             onDelete() {
                 this.checklists = getChecklists();
             }
+        },
+        mounted() {
+            this.checklists = getChecklists();
         },
         name: "ChecklistsView"
     };

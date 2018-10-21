@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <input type="text" @change="onTitleChange" :value="title" />
-        <checklist-item-edit :checklistId="checklist.id" v-for="item in items" :key="`${item}`" :title="item" @titleChange="onItemChange"/>
+        <checklist-item-edit :checklistId="checklist.id" v-for="item in items" :key="`${item}`" :title="item" @titleChange="onItemChange" @delete="onItemDelete" />
         <add-checklist-item :checklistId="checklist.id" :items="items" @save="onAdd" v-if="checklist" />
     </div>
 </template>
@@ -76,6 +76,12 @@
                 }
                 modifyChecklist(this.checklist);
             },
+            onItemDelete(itemTitle) {
+                this.checklist = {
+                    ...this.checklist,
+                    items: this.items.filter(item => item !== itemTitle),
+                };
+            },
             onTitleChange(event) {
                 this.checklist = {
                     ...this.checklist,
@@ -95,7 +101,7 @@
                     title: 'Empty',
                 };
                 addChecklist(this.checklist);
-                this.$router.replace(`/checklist/${this.checklist.id}`);
+                this.$router.replace(`/checklist/${this.checklist.id}/edit`);
             }
             setActiveChecklist(this.checklist.id);
         },

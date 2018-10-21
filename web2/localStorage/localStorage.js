@@ -53,12 +53,18 @@ export function deleteChecklist(checklistId) {
   localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
 }
 
+export function getActive() {
+  return localStorage.getItem(ACTIVE_STORAGE_KEY) || {
+    items: [],
+  };
+}
+
 export function getChecklist(checklistId) {
   const data = getChecklists();
   return data.find(checklist => checklist.id === checklistId);
 }
 
-export function getChecklists(){
+export function getChecklists() {
   try {
     const data = JSON.parse(localStorage.getItem(CHECKLISTS_STORAGE_KEY));
     if (!data.push) return [];
@@ -96,7 +102,7 @@ export function modifyChecklist(checklist) {
   Object.assign(data.find(checklistItem => checklistItem.id === checklist.id), checklist);
   localStorage.setItem(CHECKLISTS_STORAGE_KEY, JSON.stringify(data));
   const active = JSON.parse(localStorage.getItem(ACTIVE_STORAGE_KEY));
-  if(active.id === checklist.id) {
+  if (active.id === checklist.id) {
     localStorage.setItem(ACTIVE_STORAGE_KEY, JSON.stringify(checklist));
   }
 
@@ -106,9 +112,9 @@ export function modifyChecklist(checklist) {
 export function removeChecklistItem(checklistId, checklistItem) {
   let data = getChecklists();
   const checklist = data.find(checklist => checklist.id === checklistId) || {
-    title: 'Empty',
-    items: [],
     id: getNextId(),
+    items: [],
+    title: 'Empty',
   };
   checklist.items.push(checklistItem);
   data = data.filter(checklist => checklist.id !== checklistId);
