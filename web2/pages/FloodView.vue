@@ -20,6 +20,9 @@
         descriptionOpen: false
       }
     },
+    mounted() {
+      document.title = 'Disaster Assistant | Flood';
+    },
   }
 </script>
 

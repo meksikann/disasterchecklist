@@ -1,16 +1,21 @@
 {
   "/": {
-    "title": "Vue.js 2 Material Component Framework",
-    "description": "My Vuetify.js Project",
-    "keywords": "vue 2.0, vuetify"
-  },
-  "/inspire": {
-    "title": "Create something amazing",
+    "title": "Disaster Assistant",
     "description": "",
     "keywords": ""
   },
   "/checklist": {
     "title": "Checklist",
+    "description": "",
+    "keywords": ""
+  },
+  "/checklists": {
+    "title": "Checklists",
+    "description": "",
+    "keywords": ""
+  },
+  "/inspire": {
+    "title": "Create something amazing",
     "description": "",
     "keywords": ""
   }

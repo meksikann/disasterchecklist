@@ -29,6 +29,10 @@
                 predefinedChecklists,
             };
         },
+        name: 'Checklists',
+        meta: {
+            title: 'Checklists',
+        },
         methods: {
             onDelete() {
                 this.checklists = getChecklists();
@@ -36,6 +40,7 @@
         },
         mounted() {
             this.checklists = getChecklists();
+            document.title = 'Disaster Assistant | Checklists';
         },
         name: "ChecklistsView"
     };

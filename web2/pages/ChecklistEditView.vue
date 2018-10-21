@@ -104,6 +104,7 @@
                 this.$router.replace(`/checklist/${this.checklist.id}/edit`);
             }
             setActiveChecklist(this.checklist.id);
+            document.title = `Disaster Assistant | Edit: ${this.checklist.title}`;
         },
     }
 </script>

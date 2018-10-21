@@ -21,6 +21,9 @@
         descriptionOpen: false
       }
     },
+    mounted() {
+      document.title = 'Disaster Assistant | Fires';
+    }
   }
 </script>
 

@@ -29,8 +29,8 @@ export function createRouter () {
         route('/disaster-flood', 'Flood'),
         route('/map', 'Map'),
         route('/checklist/', 'ChecklistEdit', 'Create checklist'),
-        route('/checklists', 'Checklists'),
-        route('/checklist/:checklistId', 'Checklist'),
+        route('/checklists', 'Checklists', 'See checklists'),
+        route('/checklist/:checklistId', 'Checklist', 'See checklist'),
         route('/checklist/:checklistId/edit', 'ChecklistEdit', 'Edit checklist'),
         // Global redirect for 404
         { path: '*', redirect: '/' }

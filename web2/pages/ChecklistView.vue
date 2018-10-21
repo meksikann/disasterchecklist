@@ -57,6 +57,7 @@
             }
             setActiveChecklist(this.checklist.id);
             document.addEventListener("shouldUpdateActive", this.updateActive);
+            document.title = `Disaster Assistant | ${this.checklist.title}`;
         },
         updateActive() {
             console.info('should update active...');

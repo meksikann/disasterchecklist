@@ -79,6 +79,9 @@
   import Speak from "../components/Speak";
 
   export default {
-    components: {Speak}
+    components: {Speak},
+    mounted() {
+      document.title = 'Disaster Assistant | Create';
+    },
   }
 </script>
