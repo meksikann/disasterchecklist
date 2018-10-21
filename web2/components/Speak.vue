@@ -1,9 +1,20 @@
 <template>
   <div id="speak">
     <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
-    <v-btn color="info" fab large dark @click="startButton()">
+    <v-btn flat fab large dark @click="startButton()">
       <v-icon>mic</v-icon>
     </v-btn>
+    <div class="waveWrapper waveAnimation">
+      <div class="waveWrapperInner bgTop">
+        <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+      </div>
+      <div class="waveWrapperInner bgMiddle">
+        <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+      </div>
+      <div class="waveWrapperInner bgBottom">
+        <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -345,10 +356,88 @@
 
 <style scoped>
   #speak {
-    position: fixed;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
+    position: relative;
+    width: 100vw;
+    height: 72vh;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to top, #2196f3 20%, #43435D 80%);
+    z-index: 1;
+    overflow: hidden;
+  }
+  #speak button {
+    display: block;
+    position: absolute;
+    top: calc(15% - 40px);
+    left: 0;
+    right: 0;
+    margin: 60px auto 0;
+    border: 2px solid #9bd0fa;
+    width: 250px;
+    height: 250px;
+  }
+  #speak button i {
+    font-size: 150px;
+  }
+
+  .bgTop {
+    z-index: 15;
+    opacity: 0.3;
+  }
+  .bgMiddle {
+    z-index: 10;
+    opacity: 0.15;
+  }
+  .bgBottom {
+    opacity: 0.25;
+    z-index: 5;
+  }
+  .waveWrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .wave {
+    position: absolute;
+    left: 0;
+    width: 2000px;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+  }
+  .waveTop {
+    background-size: 50% 100px;
+  }
+  .waveAnimation .waveTop {
+    animation: move-wave 3s;
+    -webkit-animation: move-wave 3s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+  }
+  .waveMiddle {
+    background-size: 50% 120px;
+  }
+  .waveAnimation .waveMiddle {
+    animation: move_wave 5s linear infinite;
+  }
+  .waveBottom {
+    background-size: 50% 100px;
+  }
+  .waveAnimation .waveBottom {
+    animation: move_wave 5s linear infinite;
+  }
+  @keyframes move_wave {
+    0% {
+      transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+      transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+    100% {
+      transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
   }
 </style>
